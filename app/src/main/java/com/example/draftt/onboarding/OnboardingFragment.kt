@@ -22,4 +22,8 @@ class OnboardingFragment : Fragment() {
 
         return binding.root
     }
+
+    // TODO: Put the ViewPager2 as the layout for this fragment
+    // TODO: implemented the FragmentStateAdapter here
+    // TODO: Need to figure out how to get the slides going
 }
