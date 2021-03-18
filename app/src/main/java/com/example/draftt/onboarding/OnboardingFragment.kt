@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.draftt.databinding.OnboardingFragmentLayoutBinding
 
@@ -16,6 +17,7 @@ class OnboardingFragment : Fragment() {
 
     private val ONBOARDING_SLIDES = 3
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -25,12 +27,24 @@ class OnboardingFragment : Fragment() {
 
         binding = OnboardingFragmentLayoutBinding.inflate(inflater, container, false)
 
-        // setup viewpager2
-        viewPager = binding.onboardingViewPager2
+        // setup viewpager2 adapter
+        binding.onboardingViewPager2.adapter = OnboardingViewPagerAdapter(this)
 
         return binding.root
     }
 
     // TODO: implemented the FragmentStateAdapter here
-    // TODO: Need to figure out how to get the slides going
+
+    // marking the class as inner gives it access to outer class's shiz
+    inner class OnboardingViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+        override fun getItemCount(): Int {
+            return ONBOARDING_SLIDES
+        }
+
+        override fun createFragment(position: Int): Fragment {
+            TODO("Return a fragment based on this position")
+        }
+
+    }
+
 }
