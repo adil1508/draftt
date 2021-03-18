@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/onboardingFragment"
-        android:name="com.example.draftt.onboarding.OnboardingFragment"
+        android:name="com.example.draftt.onboarding.OnboardingPagerFragment"
         android:label="OnboardingFragment"
         tools:layout="@layout/onboarding_fragment_layout"/>
 </navigation>
