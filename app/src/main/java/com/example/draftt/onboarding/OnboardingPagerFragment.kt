@@ -36,13 +36,13 @@ class OnboardingPagerFragment : Fragment() {
     // TODO: implemented the FragmentStateAdapter here
 
     // marking the class as inner gives it access to outer class's shiz
-    inner class OnboardingViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+    private inner class OnboardingViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
         override fun getItemCount(): Int {
             return ONBOARDING_SLIDES
         }
 
         override fun createFragment(position: Int): Fragment {
-            TODO("Return a fragment based on this position")
+            return OnboardingScreenFragment(position)
         }
 
     }
