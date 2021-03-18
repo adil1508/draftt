@@ -9,7 +9,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.draftt.databinding.OnboardingFragmentLayoutBinding
 
-class OnboardingFragment : Fragment() {
+class OnboardingPagerFragment : Fragment() {
 
     lateinit var binding: OnboardingFragmentLayoutBinding
 
