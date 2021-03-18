@@ -17,7 +17,6 @@ class OnboardingPagerFragment : Fragment() {
 
     private val ONBOARDING_SLIDES = 3
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,8 +32,6 @@ class OnboardingPagerFragment : Fragment() {
         return binding.root
     }
 
-    // TODO: implemented the FragmentStateAdapter here
-
     // marking the class as inner gives it access to outer class's shiz
     private inner class OnboardingViewPagerAdapter(fragment: Fragment) :
         FragmentStateAdapter(fragment) {
@@ -45,7 +42,5 @@ class OnboardingPagerFragment : Fragment() {
         override fun createFragment(position: Int): Fragment {
             return OnboardingScreenFragment(position)
         }
-
     }
-
 }
