@@ -16,8 +16,6 @@ class OnboardingScreenFragment(val position: Int) : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         return when (position) {
             0 -> OnboardingSlide1Binding.inflate(inflater, container, false).root
             1 -> OnboardingSlide2Binding.inflate(inflater, container, false).root
@@ -25,5 +23,4 @@ class OnboardingScreenFragment(val position: Int) : Fragment() {
             else -> super.onCreateView(inflater, container, savedInstanceState)
         }
     }
-
 }
