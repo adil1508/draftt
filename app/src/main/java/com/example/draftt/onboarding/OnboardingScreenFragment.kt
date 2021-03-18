@@ -18,7 +18,7 @@ class OnboardingScreenFragment(val position: Int) : Fragment() {
     ): View? {
 
 
-        return when(position){
+        return when (position) {
             0 -> OnboardingSlide1Binding.inflate(inflater, container, false).root
             1 -> OnboardingSlide2Binding.inflate(inflater, container, false).root
             2 -> OnboardingSlide3Binding.inflate(inflater, container, false).root
