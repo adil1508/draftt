@@ -5,5 +5,13 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/onboarding_view_pager2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/bottom_dots_tablayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom" />
+
+    </androidx.viewpager2.widget.ViewPager2>
 </layout>
