@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.draftt.databinding.OnboardingFragmentLayoutBinding
+import com.google.android.material.tabs.TabLayoutMediator
 
 class OnboardingPagerFragment : Fragment() {
 
@@ -28,6 +29,11 @@ class OnboardingPagerFragment : Fragment() {
 
         // setup viewpager2 adapter
         binding.onboardingViewPager2.adapter = OnboardingViewPagerAdapter(this)
+
+        // Connect the tabs with the viewpager
+        TabLayoutMediator(
+            binding.bottomDotsTablayout, binding.onboardingViewPager2
+        ) { _, _ -> }.attach()
 
         return binding.root
     }
