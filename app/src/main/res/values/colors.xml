@@ -30,4 +30,5 @@
     <!--  Positive Green Shade + Negative Red Shade  -->
     <color name="green_approve">#04C200</color>
     <color name="red_disaprove">#FF5252</color>
+    <color name="onboarding_default_tab_color">#FCE2CC</color>
 </resources>
