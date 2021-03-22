@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.draftt.databinding.OnboardingSlide1Binding
 import com.example.draftt.databinding.OnboardingSlide2Binding
 import com.example.draftt.databinding.OnboardingSlide3Binding
+import timber.log.Timber
 
 class OnboardingScreenFragment(val position: Int) : Fragment() {
 

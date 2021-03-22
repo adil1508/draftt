@@ -70,4 +70,7 @@ dependencies {
     // Testing Navigation
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
+    // Logging library
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
 }

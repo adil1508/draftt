@@ -14,10 +14,6 @@ class OnboardingPagerFragment : Fragment() {
 
     lateinit var binding: OnboardingFragmentLayoutBinding
 
-    lateinit var viewPager: ViewPager2
-
-    private val ONBOARDING_SLIDES = 3
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,5 +44,9 @@ class OnboardingPagerFragment : Fragment() {
         override fun createFragment(position: Int): Fragment {
             return OnboardingScreenFragment(position)
         }
+    }
+
+    companion object {
+        const val ONBOARDING_SLIDES = 3
     }
 }
