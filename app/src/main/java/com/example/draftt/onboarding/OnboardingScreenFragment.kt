@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.example.draftt.auth.LoginActivity
 import com.example.draftt.databinding.OnboardingSlide1Binding
@@ -12,7 +13,9 @@ import com.example.draftt.databinding.OnboardingSlide2Binding
 import com.example.draftt.databinding.OnboardingSlide3Binding
 import timber.log.Timber
 
-class OnboardingScreenFragment(private val position: Int) : Fragment() {
+class OnboardingScreenFragment() : Fragment() {
+
+    private val position by lazy { arguments!!.getInt(POSITION_KEY) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,5 +41,15 @@ class OnboardingScreenFragment(private val position: Int) : Fragment() {
         Timber.d("Starting Login Activity")
         val intent = Intent(activity, LoginActivity::class.java)
         startActivity(intent)
+    }
+
+    companion object {
+        private const val POSITION_KEY = "position"
+
+        fun newInstance(position: Int) = OnboardingScreenFragment().apply {
+            arguments = bundleOf(
+                POSITION_KEY to position
+            )
+        }
     }
 }

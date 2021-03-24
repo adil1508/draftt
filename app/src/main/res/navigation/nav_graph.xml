@@ -10,4 +10,8 @@
         android:name="com.example.draftt.onboarding.OnboardingPagerFragment"
         android:label="OnboardingFragment"
         tools:layout="@layout/onboarding_fragment_layout" />
+    <fragment
+        android:id="@+id/onboardingScreenFragment"
+        android:name="com.example.draftt.onboarding.OnboardingScreenFragment"
+        android:label="OnboardingScreenFragment" />
 </navigation>
