@@ -41,11 +41,11 @@ class OnboardingPagerFragment : Fragment() {
         }
 
         override fun createFragment(position: Int): Fragment {
-            return OnboardingScreenFragment(position)
+            return OnboardingScreenFragment.newInstance(position = position)
         }
     }
 
     companion object {
-        const val ONBOARDING_SLIDES = 3
+        private const val ONBOARDING_SLIDES = 3
     }
 }
