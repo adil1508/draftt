@@ -17,7 +17,6 @@
             app:srcCompat="@drawable/onboarding_logo_no_text" />
 
         <Button
-            android:theme="@style/TextAppearance.MaterialComponents.Button"
             android:id="@+id/lets_draftt_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,6 +26,7 @@
             android:minWidth="48dp"
             android:minHeight="48dp"
             android:paddingVertical="12dp"
+            android:paddingHorizontal="16dp"
             android:text="Let's draftt!"
             android:textColor="@color/white"
             android:textStyle="bold"
