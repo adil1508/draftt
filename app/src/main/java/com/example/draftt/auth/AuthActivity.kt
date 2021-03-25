@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.draftt.R
 import com.example.draftt.databinding.ActivityLoginLayoutBinding
 
-class LoginActivity: AppCompatActivity() {
+class AuthActivity: AppCompatActivity() {
 
     lateinit var binding: ActivityLoginLayoutBinding
 
