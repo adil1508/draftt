@@ -17,9 +17,8 @@
             app:srcCompat="@drawable/onboarding_logo_no_text" />
 
         <com.google.android.material.button.MaterialButton
-            style="@style/Widget.MaterialComponents.Button"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:id="@+id/lets_draftt_button"
+            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="80dp"
@@ -28,9 +27,10 @@
             android:minHeight="48dp"
             android:paddingVertical="12dp"
             android:text="Let's draftt!"
-            app:cornerRadius="5dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:textColor="@color/white"
             android:textStyle="bold"
+            app:cornerRadius="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
