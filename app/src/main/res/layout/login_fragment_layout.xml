@@ -33,6 +33,7 @@
             <TextView
                 android:id="@+id/login_textview"
                 android:layout_width="wrap_content"
+                android:textColor="#EF6C00"
                 android:layout_height="wrap_content"
                 android:text="Login"
                 android:textSize="32sp"
@@ -45,6 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Let's draftt"
+                android:textColor="#CC384C51"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -83,7 +85,6 @@
             android:layout_marginTop="16dp"
             android:hint="Password"
             app:endIconMode="password_toggle"
-            app:endIconTint="#A6061F26"
             app:layout_constraintTop_toBottomOf="@+id/email_input_layout">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -91,7 +92,34 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/signup_textview"
+            android:id="@+id/forgot_password_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="forgot password?"
+            app:layout_constraintTop_toBottomOf="@+id/password_input_layout"
+            app:layout_constraintRight_toRightOf="@+id/password_input_layout"
+            android:textSize="12sp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            app:layout_constraintTop_toBottomOf="@+id/forgot_password_text"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="#EF6C00"
+            android:layout_marginHorizontal="36dp"
+            android:paddingVertical="12dp"
+            android:textColor="@color/white"
+            app:cornerRadius="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/signup_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
