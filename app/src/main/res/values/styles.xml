@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="onboarding_slide1_text_style">
+    <style name="onboarding_slide1_text_style" parent="onboarding_slide_base_style">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="onboarding_slide2_text_style" parent="onboarding_slide_base_style">
+        <item name="android:textColor">@color/black_75</item>
+    </style>
+
+    <style name="onboarding_slide_base_style">
         <item name="android:layout_marginBottom">@dimen/onboarding_slide_text_bottom_margin</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/onboarding_slide_text_size</item>
         <item name="android:textStyle">bold</item>
     </style>

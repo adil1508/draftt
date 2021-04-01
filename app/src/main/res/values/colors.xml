@@ -31,4 +31,5 @@
     <color name="green_approve">#04C200</color>
     <color name="red_disaprove">#FF5252</color>
     <color name="onboarding_default_tab_color">#FCE2CC</color>
+    <color name="black_75">#BF000000</color>
 </resources>
