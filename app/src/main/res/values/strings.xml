@@ -6,4 +6,13 @@
     <string name="onboarding_slide2_graphic_description">Crossed Cricket Bats</string>
     <string name="onboarding_slide3_graphic_description">App logo</string>
     <string name="onboaring_slide3_button_text">Let\'s draftt!</string>
+    <string name="draftt_logo_graphic_description">draftt logo</string>
+    <string name="login_label_text">Login</string>
+    <string name="login_sublabel_text">Let\'s draftt</string>
+    <string name="login_graphic_description">Cricket Stadium graphic</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="forgot_password">forgot password?</string>
+    <string name="login_login_button_text">Login</string>
+    <string name="login_signup_text">Don’t have an account, champ? Sign Up!</string>
 </resources>
