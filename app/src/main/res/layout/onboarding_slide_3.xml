@@ -6,31 +6,24 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#061F26">
+        android:background="@color/greyblue_700">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="@dimen/onboarding_slide_image_top_margin"
+            android:contentDescription="@string/onboarding_slide3_graphic_description"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/onboarding_logo_no_text" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/lets_draftt_button"
-            style="@style/Widget.MaterialComponents.Button"
+            style="@style/onbaording_slide3_button_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="80dp"
-            android:backgroundTint="#EF6C00"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:paddingVertical="12dp"
-            android:text="Let's draftt!"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:cornerRadius="5dp"
+            android:text="@string/onboaring_slide3_button_text"
+            app:cornerRadius="@dimen/onboarding_slide3_button_radius"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
