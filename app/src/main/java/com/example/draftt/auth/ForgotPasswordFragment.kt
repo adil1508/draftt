@@ -1,23 +1,24 @@
 package com.example.draftt.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.draftt.R
+import com.example.draftt.databinding.FragmentForgotPasswordBinding
 
 class ForgotPasswordFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    lateinit var binding: FragmentForgotPasswordBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_forgot_password, container, false)
+    ): View {
+        binding = FragmentForgotPasswordBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     companion object {
