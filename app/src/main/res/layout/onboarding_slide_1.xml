@@ -12,20 +12,17 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="@dimen/onboarding_slide_image_top_margin"
+            android:contentDescription="@string/onboarding_slide1_graphic_description"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/cricket_ground" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="92dp"
-            android:gravity="center"
-            android:text="Join the leagues"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            android:text="@string/onboarding_slide1_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/onboarding_slide1_text_style" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
