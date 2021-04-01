@@ -14,8 +14,8 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/bottom_dots_tablayout"
             android:layout_width="match_parent"
-            android:layout_height="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_height="@dimen/onboarding_tab_layout_height"
+            android:layout_marginBottom="@dimen/onboarding_tab_layout_bottom_margin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
