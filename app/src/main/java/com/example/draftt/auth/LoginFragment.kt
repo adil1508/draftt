@@ -10,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.draftt.R
 import com.example.draftt.databinding.FragmentLoginBinding
 import timber.log.Timber
 
@@ -57,12 +59,19 @@ class LoginFragment : Fragment() {
         override fun updateDrawState(ds: TextPaint) {
             super.updateDrawState(ds)
             ds.isUnderlineText = false
+            ds.color = resources.getColor(R.color.orange_500, requireActivity().theme)
         }
 
         override fun onClick(widget: View) {
             when (clickableTextType) {
-                ClickableTextType.FORGET_PASSWORD -> Timber.d("Forgot password string tapped")
-                ClickableTextType.SIGN_UP -> Timber.d("Sign up string tapped")
+                ClickableTextType.FORGET_PASSWORD -> {
+                    Timber.d("Forgot password string tapped")
+                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToForgotPasswordFragment())
+                }
+                ClickableTextType.SIGN_UP -> {
+                    Timber.d("Sign up string tapped")
+                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToSignupFragment())
+                }
             }
         }
     }
