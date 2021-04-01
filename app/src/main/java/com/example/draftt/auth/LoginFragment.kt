@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextPaint
+import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.LayoutInflater
 import android.view.View
@@ -36,6 +37,17 @@ class LoginFragment : Fragment() {
             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         binding.forgotPasswordText.text = forgotPasswordSpannable
+        binding.forgotPasswordText.movementMethod = LinkMovementMethod.getInstance()
+
+        val signUpSpannable = SpannableString(binding.signupText.text)
+        signUpSpannable.setSpan(
+            CustomClickableSpan(ClickableTextType.SIGN_UP),
+            binding.signupText.text.indexOf("Sign Up!"),
+            binding.signupText.text.length,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        binding.signupText.text = signUpSpannable
+        binding.signupText.movementMethod = LinkMovementMethod.getInstance()
 
     }
 
