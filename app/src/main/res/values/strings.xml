@@ -3,4 +3,5 @@
     <string name="onboarding_slide1_text">Join the leagues</string>
     <string name="onboarding_slide1_graphic_description">Cricket Stadium Graphic</string>
     <string name="onboarding_slide2_text">Create your team</string>
+    <string name="onboarding_slide2_graphic_description">Crossed Cricket Bats</string>
 </resources>
