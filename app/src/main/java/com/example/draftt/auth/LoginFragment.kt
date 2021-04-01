@@ -1,6 +1,8 @@
 package com.example.draftt.auth
 
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
 import android.text.TextPaint
 import android.text.style.ClickableSpan
 import android.view.LayoutInflater
@@ -8,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.draftt.databinding.FragmentLoginBinding
+import timber.log.Timber
 
 class LoginFragment : Fragment() {
 
@@ -19,12 +22,21 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
-//        setupClickableSpans()
+        setupClickableSpans()
         return binding.root
     }
 
     private fun setupClickableSpans() {
-        TODO("Implement")
+
+        val forgotPasswordSpannable = SpannableString(binding.forgotPasswordText.text)
+        forgotPasswordSpannable.setSpan(
+            CustomClickableSpan(ClickableTextType.FORGET_PASSWORD),
+            0,
+            binding.forgotPasswordText.text.length,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        binding.forgotPasswordText.text = forgotPasswordSpannable
+
     }
 
     inner class CustomClickableSpan(private val clickableTextType: ClickableTextType) :
@@ -37,8 +49,8 @@ class LoginFragment : Fragment() {
 
         override fun onClick(widget: View) {
             when (clickableTextType) {
-                ClickableTextType.FORGET_PASSWORD -> TODO("Go to Forget password fragment")
-                ClickableTextType.SIGN_UP -> TODO("Go to Sign up fragment")
+                ClickableTextType.FORGET_PASSWORD -> Timber.d("Forgot password string tapped")
+                ClickableTextType.SIGN_UP -> Timber.d("Sign up string tapped")
             }
         }
     }
