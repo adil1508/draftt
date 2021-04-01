@@ -1,4 +1,8 @@
 <resources>
     <dimen name="onboarding_tab_layout_height">16dp</dimen>
     <dimen name="onboarding_tab_layout_bottom_margin">16dp</dimen>
+    <dimen name="onboarding_slide_image_top_margin">48dp</dimen>
+
+    <dimen name="onboarding_slide_text_size">24sp</dimen>
+    <dimen name="onboarding_slide_text_bottom_margin">92dp</dimen>
 </resources>
