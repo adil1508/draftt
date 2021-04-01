@@ -17,14 +17,10 @@
             app:srcCompat="@drawable/cross_bats" />
 
         <TextView
+            style="@style/onboarding_slide2_text_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="92dp"
-            android:gravity="center"
-            android:text="Create your team"
-            android:textColor="#BF000000"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            android:text="@string/onboarding_slide2_text"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

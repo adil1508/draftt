@@ -18,11 +18,11 @@
             app:srcCompat="@drawable/cricket_ground" />
 
         <TextView
+            style="@style/onboarding_slide1_text_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/onboarding_slide1_text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            style="@style/onboarding_slide1_text_style" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
