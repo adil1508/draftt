@@ -4,4 +4,6 @@
     <string name="onboarding_slide1_graphic_description">Cricket Stadium Graphic</string>
     <string name="onboarding_slide2_text">Create your team</string>
     <string name="onboarding_slide2_graphic_description">Crossed Cricket Bats</string>
+    <string name="onboarding_slide3_graphic_description">App logo</string>
+    <string name="onboaring_slide3_button_text">Let\'s draftt!</string>
 </resources>

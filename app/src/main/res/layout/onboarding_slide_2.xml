@@ -6,16 +6,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFF00">
+        android:background="@color/onboarding_slide2_background">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="@dimen/onboarding_slide_image_top_margin"
+            android:contentDescription="@string/onboarding_slide2_graphic_description"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/cross_bats"
-            android:contentDescription="@string/onboarding_slide2_graphic_description" />
+            app:srcCompat="@drawable/cross_bats" />
 
         <TextView
             style="@style/onboarding_slide2_text_style"

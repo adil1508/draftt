@@ -19,17 +19,20 @@
     <color name="orange_300">#fce2cc</color>
 
     <!--  Grey-Blue Shades  -->
-    <color name="greyblue_900">#061f26</color>
-    <color name="greyblue_800">#384c51</color>
-    <color name="greyblue_700">#516267</color>
-    <color name="greyblue_600">#6a797d</color>
-    <color name="greyblue_500">#838f93</color>
-    <color name="greyblue_400">#b4bcbe</color>
-    <color name="greyblue_300">#e6e9e9</color>
+    <color name="greyblue_700">#061f26</color>
+    <color name="greyblue_600">#384c51</color>
+    <color name="greyblue_500">#516267</color>
+    <color name="greyblue_400">#6a797d</color>
+    <color name="greyblue_300">#838f93</color>
+    <color name="greyblue_200">#b4bcbe</color>
+    <color name="greyblue_100">#e6e9e9</color>
 
     <!--  Positive Green Shade + Negative Red Shade  -->
     <color name="green_approve">#04C200</color>
     <color name="red_disaprove">#FF5252</color>
+
     <color name="onboarding_default_tab_color">#FCE2CC</color>
     <color name="black_75">#BF000000</color>
+    <color name="onboarding_slide2_background">#FFFF00</color>
+    <color name="onboarding_slide1_background">#FF0C0C</color>
 </resources>
