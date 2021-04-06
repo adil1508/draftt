@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.draftt.R
 import com.example.draftt.databinding.FragmentForgotPasswordBinding
 
 class ForgotPasswordFragment : Fragment() {
 
-    lateinit var binding: FragmentForgotPasswordBinding
+    private lateinit var binding: FragmentForgotPasswordBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
