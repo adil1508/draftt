@@ -44,7 +44,7 @@ class LoginFragment : Fragment() {
         val signUpSpannable = SpannableString(binding.signupText.text)
         signUpSpannable.setSpan(
             CustomClickableSpan(ClickableTextType.SIGN_UP),
-            binding.signupText.text.indexOf("Sign Up!"),
+            binding.signupText.text.indexOf(getString(R.string.sign_up_text)),
             binding.signupText.text.length,
             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )

@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.draftt.databinding.FragmentSignupBinding
 
-class SignupFragment: Fragment() {
+class SignupFragment : Fragment() {
 
-    lateinit var binding: FragmentSignupBinding
+    private lateinit var binding: FragmentSignupBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
