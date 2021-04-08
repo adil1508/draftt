@@ -28,11 +28,6 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="login_inner_contraint_layout">
-        <item name="android:layout_marginHorizontal">36dp</item>
-        <item name="android:layout_marginTop">88dp</item>
-    </style>
-
     <style name="login_login_label">
         <item name="android:textColor">@color/orange_500</item>
         <item name="android:textSize">32sp</item>
@@ -44,28 +39,18 @@
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="login_email_edittext">
-        <item name="android:layout_marginHorizontal">36dp</item>
-        <item name="android:layout_marginTop">24dp</item>
-    </style>
 
     <style name="forget_password_email_edittext">
         <item name="android:layout_marginHorizontal">36dp</item>
         <item name="android:layout_marginTop">24dp</item>
     </style>
 
-    <style name="login_password_edittext">
-        <item name="android:layout_marginHorizontal">36dp</item>
-        <item name="android:layout_marginTop">16dp</item>
-    </style>
 
     <style name="login_forgot_password">
         <item name="android:textSize">12sp</item>
     </style>
 
     <style name="login_login_button" parent="Widget.MaterialComponents.Button">
-        <item name="android:layout_marginHorizontal">36dp</item>
-        <item name="android:layout_marginTop">15dp</item>
         <item name="android:backgroundTint">@color/orange_500</item>
         <item name="android:paddingVertical">12dp</item>
         <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Button</item>
@@ -82,7 +67,6 @@
     </style>
 
     <style name="login_signup">
-        <item name="android:layout_marginBottom">24dp</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">16sp</item>
     </style>
