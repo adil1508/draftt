@@ -14,17 +14,22 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/draftt_logo_graphic_description"
             android:src="@drawable/logo_with_border"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/inner_constraint_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/login_inner_constraint_layout_height"
+            android:layout_marginHorizontal="36dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/logo">
+            app:layout_constraintTop_toBottomOf="@id/logo"
+            app:layout_constraintVertical_bias="0.15">
 
             <TextView
                 android:id="@+id/login_textview"
@@ -59,11 +64,16 @@
             android:id="@+id/email_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="36dp"
             android:hint="@string/email_hint"
             app:endIconCheckable="true"
             app:endIconDrawable="@drawable/email_icon"
             app:endIconMode="custom"
-            app:layout_constraintTop_toBottomOf="@+id/inner_constraint_layout">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inner_constraint_layout"
+            app:layout_constraintVertical_bias="0.05">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -74,9 +84,15 @@
             android:id="@+id/password_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="36dp"
+            android:layout_marginTop="8dp"
             android:hint="@string/password_hint"
             app:endIconMode="password_toggle"
-            app:layout_constraintTop_toBottomOf="@+id/email_input_layout">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email_input_layout"
+            app:layout_constraintVertical_bias="0">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -100,7 +116,10 @@
             app:cornerRadius="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/forgot_password_text" />
+            android:layout_marginHorizontal="36dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.15"
+            app:layout_constraintTop_toBottomOf="@+id/password_input_layout" />
 
         <TextView
             android:id="@+id/signup_text"
@@ -108,7 +127,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/login_signup_text"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1"
+            android:layout_marginBottom="8dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
