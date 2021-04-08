@@ -20,4 +20,6 @@
     <string name="forget_password_subtitle">Enter the email address you used to sign up</string>
     <string name="forget_password_button_text">Reset password</string>
     <string name="wickets_graphic">Wickets Graphic</string>
+    <string name="signup_login_text">Already have an account? Log in!</string>
+    <string name="login_text">Log in!</string>
 </resources>
