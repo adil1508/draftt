@@ -116,4 +116,30 @@
         <item name="android:layout_marginHorizontal">36dp</item>
         <item name="android:layout_marginTop">8dp</item>
     </style>
+
+    <style name="signup_inner_constraint_layout">
+        <item name="android:layout_marginHorizontal">36dp</item>
+    </style>
+
+    <style name="signup_name_edittext">
+        <item name="android:layout_marginHorizontal">36dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+    </style>
+
+    <style name="signup_email_edittext">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginHorizontal">36dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
+
+    <style name="signup_password_edittext">
+        <item name="android:layout_marginHorizontal">36dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
+
+    <style name="signup_confirm_password_edittext">
+        <item name="android:layout_marginHorizontal">36dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
 </resources>

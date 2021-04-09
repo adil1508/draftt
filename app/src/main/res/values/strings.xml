@@ -22,4 +22,10 @@
     <string name="wickets_graphic">Wickets Graphic</string>
     <string name="signup_login_text">Already have an account? Log in!</string>
     <string name="login_text">Log in!</string>
+    <string name="sign_up_title">Sign up!</string>
+    <string name="signup_title_sublabel">Get started!</string>
+    <string name="signup_title_graphic_description">cricket helmet</string>
+    <string name="signup_name">Name</string>
+    <string name="confirm_password_text">Confirm password</string>
+    <string name="signup_signup_buttom_text">Sign up</string>
 </resources>
