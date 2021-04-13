@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/forgot_password_title"
+        android:id="@+id/title"
         style="@style/account_verification_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         app:layout_constraintVertical_bias="0.1" />
 
     <TextView
-        android:id="@+id/forgot_password_subtitle"
+        android:id="@+id/subtitle"
         style="@style/account_verification_subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,11 +25,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/forgot_password_title"
+        app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintVertical_bias="0" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/email_input_layout"
+        android:id="@+id/input_layout"
         style="@style/account_verification_code_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forgot_password_subtitle"
+        app:layout_constraintTop_toBottomOf="@+id/subtitle"
         app:layout_constraintVertical_bias="0">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -50,7 +50,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/reset_password_button"
+        android:id="@+id/verify_button"
         style="@style/verify_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_input_layout"
+        app:layout_constraintTop_toBottomOf="@+id/input_layout"
         app:layout_constraintVertical_bias="0.1" />
 
     <ImageView
@@ -70,7 +70,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.45"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/reset_password_button"
+        app:layout_constraintTop_toBottomOf="@id/verify_button"
         app:layout_constraintWidth_percent="0.45" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
