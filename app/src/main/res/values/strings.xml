@@ -28,4 +28,9 @@
     <string name="signup_name">Name</string>
     <string name="confirm_password_text">Confirm password</string>
     <string name="signup_signup_buttom_text">Sign up</string>
+    <string name="account_verification_title">Verify email address</string>
+    <string name="account_verification_subtitle">Please enter the 6-digit code sent to your email address</string>
+    <string name="enter_code_hint">Enter code</string>
+    <string name="account_verification_button_text">Verify</string>
+    <string name="account_verification_graphic_desc">Pitch graphic</string>
 </resources>
