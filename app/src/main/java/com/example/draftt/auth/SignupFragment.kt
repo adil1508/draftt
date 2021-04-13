@@ -25,8 +25,19 @@ class SignupFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSignupBinding.inflate(inflater, container, false)
-        setupClickableSpans()
+        setupListeners()
         return binding.root
+    }
+
+    private fun setupListeners(){
+        setupButtonListener()
+        setupClickableSpans()
+    }
+
+    private fun setupButtonListener() {
+        binding.signupButton.setOnClickListener{
+            findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToAccountVerificationFragment())
+        }
     }
 
     private fun setupClickableSpans() {
