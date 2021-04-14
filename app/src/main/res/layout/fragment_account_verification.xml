@@ -63,7 +63,7 @@
         app:layout_constraintVertical_bias="0.1" />
 
     <ImageView
-        style="@style/forget_password_imageview_style"
+        style="@style/account_verification_imageview_style"
         android:contentDescription="@string/account_verification_graphic_desc"
         android:src="@drawable/pitch"
         app:layout_constraintBottom_toBottomOf="parent"
