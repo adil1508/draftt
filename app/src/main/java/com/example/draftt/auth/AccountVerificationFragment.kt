@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.draftt.databinding.FragmentAccountVerificationBinding
 
 class AccountVerificationFragment: Fragment() {
@@ -17,7 +18,16 @@ class AccountVerificationFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAccountVerificationBinding.inflate(inflater, container, false)
+        setupListeners()
         return binding.root
+    }
+
+    private fun setupListeners(){
+
+        binding.verifyButton.setOnClickListener {
+            findNavController().navigate(AccountVerificationFragmentDirections.actionAccountVerificationFragmentToTeamNameFragment())
+        }
+
     }
 
     companion object {
