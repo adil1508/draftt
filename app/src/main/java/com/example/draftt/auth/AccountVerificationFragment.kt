@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.draftt.databinding.FragmentAccountVerificationBinding
 
-class AccountVerificationFragment: Fragment() {
+class AccountVerificationFragment : Fragment() {
 
     private lateinit var binding: FragmentAccountVerificationBinding
 
@@ -22,7 +22,7 @@ class AccountVerificationFragment: Fragment() {
         return binding.root
     }
 
-    private fun setupListeners(){
+    private fun setupListeners() {
 
         binding.verifyButton.setOnClickListener {
             findNavController().navigate(AccountVerificationFragmentDirections.actionAccountVerificationFragmentToTeamNameFragment())
