@@ -29,13 +29,13 @@ class SignupFragment : Fragment() {
         return binding.root
     }
 
-    private fun setupListeners(){
+    private fun setupListeners() {
         setupButtonListener()
         setupClickableSpans()
     }
 
     private fun setupButtonListener() {
-        binding.signupButton.setOnClickListener{
+        binding.signupButton.setOnClickListener {
             findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToAccountVerificationFragment())
         }
     }
@@ -51,7 +51,7 @@ class SignupFragment : Fragment() {
         )
         binding.loginText.text = loginTextSpannable
         binding.loginText.movementMethod = LinkMovementMethod.getInstance()
-        
+
     }
 
     inner class CustomClickableSpan : ClickableSpan() {
