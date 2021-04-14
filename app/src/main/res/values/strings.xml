@@ -33,4 +33,8 @@
     <string name="enter_code_hint">Enter code</string>
     <string name="account_verification_button_text">Verify</string>
     <string name="account_verification_graphic_desc">Pitch graphic</string>
+    <string name="team_name_title">Team name</string>
+    <string name="team_name_subtitle">Time to decide what truly matters</string>
+    <string name="team_name_edittext_text">Enter team name</string>
+    <string name="team_name_button">Let\'s go!</string>
 </resources>
