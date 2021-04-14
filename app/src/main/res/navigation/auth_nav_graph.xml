@@ -53,9 +53,28 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_signupFragment_to_teamNameFragment"
+            app:destination="@id/teamNameFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
     <fragment
         android:id="@+id/accountVerificationFragment"
         android:name="com.example.draftt.auth.AccountVerificationFragment"
-        android:label="AccountVerificationFragment" />
+        android:label="AccountVerificationFragment">
+        <action
+            android:id="@+id/action_accountVerificationFragment_to_teamNameFragment"
+            app:destination="@id/teamNameFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/teamNameFragment"
+        android:name="com.example.draftt.auth.TeamNameFragment"
+        android:label="TeamNameFragment" />
 </navigation>
