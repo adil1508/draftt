@@ -49,7 +49,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/verify_button"
+        android:id="@+id/lets_go_button"
         style="@style/lets_go_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -62,14 +62,14 @@
         app:layout_constraintVertical_bias="0.1" />
 
     <ImageView
-        style="@style/forget_password_imageview_style"
+        style="@style/team_name_imageview_style"
         android:contentDescription="@string/account_verification_graphic_desc"
         android:src="@drawable/trophy"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.45"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/verify_button"
+        app:layout_constraintTop_toBottomOf="@id/lets_go_button"
         app:layout_constraintWidth_percent="0.45" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
