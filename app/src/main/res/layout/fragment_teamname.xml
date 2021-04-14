@@ -6,10 +6,10 @@
 
     <TextView
         android:id="@+id/title"
-        style="@style/account_verification_title"
+        style="@style/team_name_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Team name"
+        android:text="@string/team_name_title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,10 +18,10 @@
 
     <TextView
         android:id="@+id/subtitle"
-        style="@style/account_verification_subtitle"
+        style="@style/team_name_subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Time to decide what truly matters"
+        android:text="@string/team_name_subtitle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,10 +30,10 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_layout"
-        style="@style/account_verification_code_edittext"
+        style="@style/team_name_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter team name"
+        android:hint="@string/team_name_edittext_text"
         app:endIconCheckable="true"
         app:endIconDrawable="@drawable/default_player_icon"
         app:endIconMode="custom"
@@ -50,10 +50,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/verify_button"
-        style="@style/verify_button"
+        style="@style/lets_go_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Let's go!"
+        android:text="@string/team_name_button"
         app:cornerRadius="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -50,6 +50,11 @@
         <item name="android:layout_marginTop">24dp</item>
     </style>
 
+    <style name="team_name_edittext">
+        <item name="android:layout_marginHorizontal">36dp</item>
+        <item name="android:layout_marginTop">24dp</item>
+    </style>
+
 
     <style name="login_forgot_password">
         <item name="android:textSize">12sp</item>
@@ -88,6 +93,14 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="lets_go_button" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_marginHorizontal">36dp</item>
+        <item name="android:backgroundTint">@color/orange_500</item>
+        <item name="android:paddingVertical">12dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Button</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
     <style name="login_signup">
         <item name="android:gravity">center</item>
         <item name="android:textSize">16sp</item>
@@ -114,6 +127,13 @@
         <item name="android:textSize">34sp</item>
     </style>
 
+    <style name="team_name_title">
+        <item name="android:layout_marginHorizontal">36dp</item>
+        <item name="android:textColor">@color/orange_500</item>
+        <item name="android:textFontWeight">600</item>
+        <item name="android:textSize">34sp</item>
+    </style>
+
     <style name="forget_password_subtitle">
         <item name="android:layout_marginHorizontal">36dp</item>
         <item name="android:textColor">@color/greyblue_600</item>
@@ -121,6 +141,12 @@
     </style>
 
     <style name="account_verification_subtitle">
+        <item name="android:layout_marginHorizontal">36dp</item>
+        <item name="android:textColor">@color/greyblue_600</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="team_name_subtitle">
         <item name="android:layout_marginHorizontal">36dp</item>
         <item name="android:textColor">@color/greyblue_600</item>
         <item name="android:textSize">16sp</item>
