@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.draftt.auth.LoginFragment"
+        android:name="com.example.draftt.auth.views.LoginFragment"
         android:label="LoginFragment">
         <action
             android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="com.example.draftt.auth.ForgotPasswordFragment"
+        android:name="com.example.draftt.auth.views.ForgotPasswordFragment"
         android:label="ForgotPasswordFragment">
         <action
             android:id="@+id/action_forgotPasswordFragment_to_accountVerificationFragment"
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
-        android:name="com.example.draftt.auth.SignupFragment"
+        android:name="com.example.draftt.auth.views.SignupFragment"
         android:label="SignupFragment">
         <action
             android:id="@+id/action_signupFragment_to_loginFragment"
@@ -56,7 +56,7 @@
     </fragment>
     <fragment
         android:id="@+id/accountVerificationFragment"
-        android:name="com.example.draftt.auth.AccountVerificationFragment"
+        android:name="com.example.draftt.auth.views.AccountVerificationFragment"
         android:label="AccountVerificationFragment">
         <action
             android:id="@+id/action_accountVerificationFragment_to_teamNameFragment"
@@ -68,6 +68,6 @@
     </fragment>
     <fragment
         android:id="@+id/teamNameFragment"
-        android:name="com.example.draftt.auth.TeamNameFragment"
+        android:name="com.example.draftt.auth.views.TeamNameFragment"
         android:label="TeamNameFragment" />
 </navigation>

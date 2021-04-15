@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import com.example.draftt.auth.AuthActivity
+import com.example.draftt.auth.views.AuthActivity
 import com.example.draftt.databinding.OnboardingSlide1Binding
 import com.example.draftt.databinding.OnboardingSlide2Binding
 import com.example.draftt.databinding.OnboardingSlide3Binding
