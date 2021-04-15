@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "426398772629",
+    "project_id": "draftt-578a8",
+    "storage_bucket": "draftt-578a8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:426398772629:android:7255d13f4e90995d8c9a9c",
+        "android_client_info": {
+          "package_name": "com.example.draftt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "426398772629-fo049tfhp0qf28kqs1pgm1ab8s45nfeb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYVo-aKdzDhvw5Jnmd5hTrHcIk6Hk7UNs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "426398772629-fo049tfhp0qf28kqs1pgm1ab8s45nfeb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
