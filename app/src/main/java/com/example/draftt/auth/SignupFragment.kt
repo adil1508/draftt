@@ -41,7 +41,6 @@ class SignupFragment : Fragment() {
     }
 
     private fun setupClickableSpans() {
-
         val loginTextSpannable = SpannableString(binding.loginText.text)
         loginTextSpannable.setSpan(
             CustomClickableSpan(),
