@@ -23,11 +23,9 @@ class AccountVerificationFragment : Fragment() {
     }
 
     private fun setupListeners() {
-
         binding.verifyButton.setOnClickListener {
             findNavController().navigate(AccountVerificationFragmentDirections.actionAccountVerificationFragmentToTeamNameFragment())
         }
-
     }
 
     companion object {

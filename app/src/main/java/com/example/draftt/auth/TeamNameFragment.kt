@@ -21,8 +21,7 @@ class TeamNameFragment : Fragment() {
     }
 
     companion object {
-
+        @JvmStatic
         fun newInstance() = TeamNameFragment()
-
     }
 }
