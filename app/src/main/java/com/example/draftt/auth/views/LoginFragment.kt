@@ -1,4 +1,4 @@
-package com.example.draftt.auth
+package com.example.draftt.auth.views
 
 import android.os.Bundle
 import android.text.SpannableString
