@@ -1,5 +1,7 @@
 package com.example.draftt.auth.repositories
 
+import com.google.firebase.auth.FirebaseUser
+
 class FirebaseAuthRepository: AuthRepository {
 
     // TODO: Needs an instance of Firebase Auth
@@ -12,7 +14,7 @@ class FirebaseAuthRepository: AuthRepository {
         TODO("Not yet implemented")
     }
 
-    override fun currentUser() {
+    override fun currentUser(): FirebaseUser? {
         TODO("Not yet implemented")
     }
 
