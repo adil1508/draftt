@@ -10,14 +10,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.navigation.fragment.findNavController
 import com.example.draftt.R
+import com.example.draftt.auth.viewmodels.SignUpViewModel
 import com.example.draftt.databinding.FragmentSignupBinding
 import timber.log.Timber
 
 class SignupFragment : Fragment() {
 
     private lateinit var binding: FragmentSignupBinding
+    private lateinit var viewModel: SignUpViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,6 +30,7 @@ class SignupFragment : Fragment() {
     ): View {
         binding = FragmentSignupBinding.inflate(inflater, container, false)
         setupListeners()
+        viewModel = ViewModelProvider(this).get(SignUpViewModel::class.java)
         return binding.root
     }
 
@@ -36,7 +41,9 @@ class SignupFragment : Fragment() {
 
     private fun setupButtonListener() {
         binding.signupButton.setOnClickListener {
-            findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToAccountVerificationFragment())
+//            findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToAccountVerificationFragment())
+            // we're going to Sign a user up
+            viewModel.signup(binding.emailInputLayout.editText?.text.toString(), binding.passwordInputLayout.editText?.text.toString())
         }
     }
 
