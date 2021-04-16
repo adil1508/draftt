@@ -4,21 +4,24 @@ import com.google.firebase.auth.FirebaseUser
 
 class FirebaseAuthRepository: AuthRepository {
 
-    // TODO: Needs an instance of Firebase Auth
+    // TODO: Needs an instance of Firebase Auth, which should be injected
+    private val firebase by lazy {
+        FirebaseAuthenticationService()
+    }
 
     override fun login(email: String, password: String) {
-        TODO("Not yet implemented")
+        firebase.login(email, password)
     }
 
     override fun signup(email: String, password: String) {
-        TODO("Not yet implemented")
+        firebase.signup(email, password)
     }
 
     override fun currentUser(): FirebaseUser? {
-        TODO("Not yet implemented")
+        return firebase.currentUser()
     }
 
     override fun logout() {
-        TODO("Not yet implemented")
+        firebase.logout()
     }
 }
