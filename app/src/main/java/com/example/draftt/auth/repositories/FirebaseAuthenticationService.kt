@@ -6,7 +6,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import timber.log.Timber
 
-// This class will be injected into FirebaseAuthRepository
+// TODO: This class will be injected into FirebaseAuthRepository
 class FirebaseAuthenticationService {
 
     private val auth: FirebaseAuth by lazy {
