@@ -33,9 +33,12 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
-    private fun setupListeners(){
+    private fun setupListeners() {
         binding.loginButton.setOnClickListener {
-            viewModel.login(binding.emailInputLayout.editText?.text.toString(), binding.passwordInputLayout.editText?.text.toString())
+            viewModel.login(
+                binding.emailInputLayout.editText?.text.toString(),
+                binding.passwordInputLayout.editText?.text.toString()
+            )
         }
         setupClickableSpans()
     }
