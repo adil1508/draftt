@@ -10,14 +10,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.draftt.R
+import com.example.draftt.auth.viewmodels.LoginViewModel
 import com.example.draftt.databinding.FragmentLoginBinding
 import timber.log.Timber
 
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
+    private lateinit var viewModel: LoginViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,6 +28,7 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         setupClickableSpans()
         return binding.root
     }
