@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.navigation.fragment.findNavController
 import com.example.draftt.R
 import com.example.draftt.auth.viewmodels.SignUpViewModel
@@ -43,7 +42,10 @@ class SignupFragment : Fragment() {
         binding.signupButton.setOnClickListener {
 //            findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToAccountVerificationFragment())
             // we're going to Sign a user up
-            viewModel.signup(binding.emailInputLayout.editText?.text.toString(), binding.passwordInputLayout.editText?.text.toString())
+            viewModel.signup(
+                binding.emailInputLayout.editText?.text.toString(),
+                binding.passwordInputLayout.editText?.text.toString()
+            )
         }
     }
 

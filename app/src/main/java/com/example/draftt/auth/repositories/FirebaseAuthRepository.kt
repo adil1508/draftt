@@ -2,7 +2,7 @@ package com.example.draftt.auth.repositories
 
 import com.google.firebase.auth.FirebaseUser
 
-class FirebaseAuthRepository: AuthRepository {
+class FirebaseAuthRepository : AuthRepository {
 
     // TODO: Needs an instance of Firebase Auth, which should be injected
     private val firebase by lazy {
