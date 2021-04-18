@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.draftt.R
+import com.example.draftt.Utils
 import com.example.draftt.auth.viewmodels.LoginViewModel
 import com.example.draftt.databinding.FragmentLoginBinding
 import timber.log.Timber
@@ -34,13 +35,18 @@ class LoginFragment : Fragment() {
     }
 
     private fun setupListeners() {
+        setupButtons()
+        setupClickableSpans()
+    }
+
+    private fun setupButtons() {
         binding.loginButton.setOnClickListener {
             viewModel.login(
                 binding.emailInputLayout.editText?.text.toString(),
                 binding.passwordInputLayout.editText?.text.toString()
             )
+            Utils.hideKeyboard(requireContext(), binding.root)
         }
-        setupClickableSpans()
     }
 
     private fun setupClickableSpans() {
