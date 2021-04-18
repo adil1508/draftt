@@ -1,10 +1,7 @@
 package com.example.draftt.auth.viewmodels
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.draftt.auth.repositories.FirebaseAuthRepository
-import com.google.firebase.auth.FirebaseUser
-import kotlinx.coroutines.launch
 
 class SignUpViewModel : ViewModel() {
 
