@@ -9,7 +9,9 @@ import android.text.style.ClickableSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.draftt.R
@@ -30,8 +32,28 @@ class LoginFragment : Fragment() {
     ): View {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        setupLiveDataObservers()
         setupListeners()
         return binding.root
+    }
+
+    private fun setupLiveDataObservers() {
+        viewModel.authResult.observe(viewLifecycleOwner, { authResult ->
+            when (authResult.status) {
+                true -> {
+                    Timber.d("Logged in user with email: ${binding.emailInputLayout.editText?.text.toString()}")
+                    Toast.makeText(requireContext(), "Logged in user with email: ${binding.emailInputLayout.editText?.text.toString()}", Toast.LENGTH_SHORT).show()
+                    binding.progressbar.visibility = View.GONE
+                    // TODO: Start another activity for authenticated users
+                    // TODO: Set user info here (if can't be done from ViewModel)
+                }
+                false -> {
+                    Timber.d("Could not Login user with email: ${binding.emailInputLayout.editText?.text.toString()}")
+                    Toast.makeText(requireContext(), "Could not Login user with email: ${binding.emailInputLayout.editText?.text.toString()}", Toast.LENGTH_SHORT).show()
+                    binding.progressbar.visibility = View.GONE
+                }
+            }
+        })
     }
 
     private fun setupListeners() {
@@ -41,6 +63,7 @@ class LoginFragment : Fragment() {
 
     private fun setupButtons() {
         binding.loginButton.setOnClickListener {
+            binding.progressbar.visibility = View.VISIBLE
             viewModel.login(
                 binding.emailInputLayout.editText?.text.toString(),
                 binding.passwordInputLayout.editText?.text.toString()
