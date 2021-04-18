@@ -6,7 +6,7 @@ class FirebaseAuthRepository : AuthRepository {
 
     // TODO: Needs an instance of Firebase Auth, which should be injected
     private val firebase by lazy {
-        FirebaseAuthenticationService()
+        FirebaseAuthService()
     }
 
     override fun login(email: String, password: String) {
