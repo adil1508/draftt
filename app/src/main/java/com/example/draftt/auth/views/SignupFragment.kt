@@ -9,6 +9,7 @@ import android.text.style.ClickableSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -29,9 +30,31 @@ class SignupFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSignupBinding.inflate(inflater, container, false)
-        setupListeners()
         viewModel = ViewModelProvider(this).get(SignUpViewModel::class.java)
+        setupLiveDataObservers()
+        setupListeners()
         return binding.root
+    }
+
+    private fun setupLiveDataObservers() {
+        viewModel.authResult.observe(viewLifecycleOwner, { authResult ->
+            when (authResult.status) {
+                true -> {
+                    Timber.d("Successfully signed up!")
+                    Toast.makeText(requireContext(), "Successfully signed up!", Toast.LENGTH_SHORT)
+                        .show()
+                    binding.progressbar.visibility = View.GONE
+                    // TODO: Start another activity for authenticated users
+                    // findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToAccountVerificationFragment())
+                    // TODO: Set user info here (if can't be done from ViewModel)
+                }
+                false -> {
+                    Timber.d("Could not sign up")
+                    Toast.makeText(requireContext(), "Could not sign up", Toast.LENGTH_SHORT).show()
+                    binding.progressbar.visibility = View.GONE
+                }
+            }
+        })
     }
 
     private fun setupListeners() {
@@ -41,8 +64,7 @@ class SignupFragment : Fragment() {
 
     private fun setupButtonListener() {
         binding.signupButton.setOnClickListener {
-//            findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToAccountVerificationFragment())
-            // we're going to Sign a user up
+            binding.progressbar.visibility = View.VISIBLE
             viewModel.signup(
                 binding.emailInputLayout.editText?.text.toString(),
                 binding.passwordInputLayout.editText?.text.toString()
