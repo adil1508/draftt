@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.draftt.R
+import com.example.draftt.Utils
 import com.example.draftt.auth.viewmodels.SignUpViewModel
 import com.example.draftt.databinding.FragmentSignupBinding
 import timber.log.Timber
@@ -46,6 +47,7 @@ class SignupFragment : Fragment() {
                 binding.emailInputLayout.editText?.text.toString(),
                 binding.passwordInputLayout.editText?.text.toString()
             )
+            Utils.hideKeyboard(requireContext(), binding.root)
         }
     }
 
