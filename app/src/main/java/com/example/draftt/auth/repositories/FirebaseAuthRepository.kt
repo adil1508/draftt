@@ -6,9 +6,15 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 
-class FirebaseAuthRepository {
+class FirebaseAuthRepository(
+    // Inject the dispatcher -- best practice
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+) {
 
     private val _authResult = MutableLiveData(
         AuthResult(
@@ -26,14 +32,22 @@ class FirebaseAuthRepository {
         Firebase.auth
     }
 
-    fun login(email: String, password: String) {
-        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                Timber.d("Successfully logged in user with email: $email")
-                _authResult.postValue(AuthResult(status = true, error = null))
-            } else {
-                Timber.d("Failed to log in user with email: $email")
-                _authResult.postValue(AuthResult(status = false, error = task.exception.toString()))
+    suspend fun login(email: String, password: String) {
+
+        withContext(ioDispatcher) {
+            firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Timber.d("Successfully logged in user with email: $email")
+                    _authResult.postValue(AuthResult(status = true, error = null))
+                } else {
+                    Timber.d("Failed to log in user with email: $email")
+                    _authResult.postValue(
+                        AuthResult(
+                            status = false,
+                            error = task.exception.toString()
+                        )
+                    )
+                }
             }
         }
     }
