@@ -29,8 +29,15 @@ class LoginFragment : Fragment() {
     ): View {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
-        setupClickableSpans()
+        setupListeners()
         return binding.root
+    }
+
+    private fun setupListeners(){
+        binding.loginButton.setOnClickListener {
+            viewModel.login(binding.emailInputLayout.editText?.text.toString(), binding.passwordInputLayout.editText?.text.toString())
+        }
+        setupClickableSpans()
     }
 
     private fun setupClickableSpans() {
