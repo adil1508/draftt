@@ -12,14 +12,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/inner_constraint_layout"
+            style="@style/signup_inner_constraint_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.2"
-            style="@style/signup_inner_constraint_layout">
+            app:layout_constraintVertical_bias="0.2">
 
             <TextView
                 android:id="@+id/login_textview"
@@ -42,16 +42,17 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:contentDescription="@string/signup_title_graphic_description"
                 android:src="@drawable/helmet_colored"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/signup_title_graphic_description" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/name_input_layout"
+            style="@style/signup_name_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/signup_name"
@@ -62,8 +63,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inner_constraint_layout"
-            app:layout_constraintVertical_bias="0"
-            style="@style/signup_name_edittext">
+            app:layout_constraintVertical_bias="0">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -72,6 +72,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/email_input_layout"
+            style="@style/signup_email_edittext"
             android:hint="@string/email_hint"
             app:endIconCheckable="true"
             app:endIconDrawable="@drawable/email_icon"
@@ -80,8 +81,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/name_input_layout"
-            app:layout_constraintVertical_bias="0"
-            style="@style/signup_email_edittext">
+            app:layout_constraintVertical_bias="0">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -90,6 +90,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/password_input_layout"
+            style="@style/signup_password_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password_hint"
@@ -98,8 +99,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/email_input_layout"
-            app:layout_constraintVertical_bias="0"
-            style="@style/signup_password_edittext">
+            app:layout_constraintVertical_bias="0">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -108,6 +108,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/confirm_password_input_layout"
+            style="@style/signup_confirm_password_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/confirm_password_text"
@@ -116,8 +117,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/password_input_layout"
-            app:layout_constraintVertical_bias="0"
-            style="@style/signup_confirm_password_edittext">
+            app:layout_constraintVertical_bias="0">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -156,8 +156,8 @@
             android:layout_height="wrap_content"
             android:text="@string/signup_login_text"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="1"
-            app:layout_constraintTop_toBottomOf="@+id/signup_button"/>
+            app:layout_constraintTop_toBottomOf="@+id/signup_button"
+            app:layout_constraintVertical_bias="1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
