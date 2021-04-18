@@ -33,8 +33,8 @@ class FirebaseAuthRepository(
     }
 
     suspend fun login(email: String, password: String) {
-
         withContext(ioDispatcher) {
+
             firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Timber.d("Successfully logged in user with email: $email")
@@ -52,15 +52,24 @@ class FirebaseAuthRepository(
         }
     }
 
-    fun signup(email: String, password: String) {
-        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                Timber.d("Successfully created user with email: $email")
-                _authResult.postValue(AuthResult(status = true, error = null))
-            } else {
-                Timber.d("FAILED to create user with email: $email")
-                _authResult.postValue(AuthResult(status = false, error = task.exception.toString()))
-            }
+    suspend fun signup(email: String, password: String) {
+        withContext(ioDispatcher) {
+
+            firebaseAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Timber.d("Successfully created user with email: $email")
+                        _authResult.postValue(AuthResult(status = true, error = null))
+                    } else {
+                        Timber.d("FAILED to create user with email: $email")
+                        _authResult.postValue(
+                            AuthResult(
+                                status = false,
+                                error = task.exception.toString()
+                            )
+                        )
+                    }
+                }
         }
 
     }
