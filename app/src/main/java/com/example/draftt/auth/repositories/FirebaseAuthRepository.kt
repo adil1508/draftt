@@ -78,5 +78,6 @@ class FirebaseAuthRepository(
         return firebaseAuth.currentUser
     }
 
+    // TODO: Add logging when implement this properly
     fun logout() = firebaseAuth.signOut()
 }
