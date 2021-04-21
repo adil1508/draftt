@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs'
     id 'com.google.gms.google-services'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -42,6 +43,9 @@ android {
 
 dependencies {
 
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
     // Import the Firebase BoM
     implementation platform('com.google.firebase:firebase-bom:27.0.0')
 
@@ -67,14 +71,14 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
     // Navigation Graph
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:${nav_version}"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     // Feature module Support
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
 
     // Jetpack Compose Integration
-    implementation "androidx.navigation:navigation-compose:1.0.0-alpha09"
+    implementation 'androidx.navigation:navigation-compose:1.0.0-alpha10'
 
     // Testing Frameworks
     testImplementation 'junit:junit:4.+'
@@ -85,5 +89,6 @@ dependencies {
 
     // Logging library
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
 
 }
