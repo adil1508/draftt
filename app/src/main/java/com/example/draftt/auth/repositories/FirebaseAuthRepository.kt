@@ -10,11 +10,11 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
+import javax.inject.Inject
 
-class FirebaseAuthRepository(
-    // Inject the dispatcher -- best practice
+class FirebaseAuthRepository @Inject constructor() {
+
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
-) {
 
     private val _authResult = MutableLiveData(
         AuthResult(
