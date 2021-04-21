@@ -1,4 +1,4 @@
-package com.example.draftt.onboarding
+package com.example.draftt.onboarding.views
 
 import android.content.Intent
 import android.os.Bundle
