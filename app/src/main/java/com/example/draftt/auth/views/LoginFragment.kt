@@ -18,8 +18,10 @@ import com.example.draftt.R
 import com.example.draftt.Utils
 import com.example.draftt.auth.viewmodels.LoginViewModel
 import com.example.draftt.databinding.FragmentLoginBinding
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
