@@ -1,5 +1,6 @@
 package com.example.draftt.auth.views
 
+import android.content.Context
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -43,11 +44,11 @@ class LoginFragment : Fragment() {
         viewModel.authResult.observe(viewLifecycleOwner, { authResult ->
             when (authResult.status) {
                 true -> {
-                    Timber.d("Logged in user with email: ${binding.emailInputLayout.editText?.text.toString()}")
-                    Toast.makeText(requireContext(), "Logged in user with email: ${binding.emailInputLayout.editText?.text.toString()}", Toast.LENGTH_SHORT).show()
+                    Timber.d("Logged in user with email: ${authResult.user?.email}")
+                    Toast.makeText(requireContext(), "Logged in user with email: ${authResult.user?.email}", Toast.LENGTH_SHORT).show()
                     binding.progressbar.visibility = View.GONE
+                    writeUserEmailToSharedPref(authResult.user?.email)
                     // TODO: Start another activity for authenticated users
-                    // TODO: Set user info here (if can't be done from ViewModel)
                 }
                 false -> {
                     Timber.d("Could not Login user with email: ${binding.emailInputLayout.editText?.text.toString()}")
@@ -56,6 +57,14 @@ class LoginFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun writeUserEmailToSharedPref(email: String?) {
+        val sharedPref = activity?.getSharedPreferences("com.example.draftt.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE) ?: return
+        with(sharedPref.edit()){
+            putString(getString(R.string.SHARED_PREF_USER_EMAIL_KEY), email)
+            apply()
+        }
     }
 
     private fun setupListeners() {
@@ -127,6 +136,7 @@ class LoginFragment : Fragment() {
     }
 
     companion object {
+
         @JvmStatic
         fun newInstance() = LoginFragment()
     }
