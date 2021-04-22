@@ -60,7 +60,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun writeUserEmailToSharedPref(email: String?) {
-        val sharedPref = activity?.getSharedPreferences("com.example.draftt.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE) ?: return
+        val sharedPref = activity?.getSharedPreferences(getString(R.string.SHARED_PREF_FILE_KEY), Context.MODE_PRIVATE) ?: return
         with(sharedPref.edit()){
             putString(getString(R.string.SHARED_PREF_USER_EMAIL_KEY), email)
             apply()
