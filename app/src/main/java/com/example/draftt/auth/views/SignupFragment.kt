@@ -1,5 +1,6 @@
 package com.example.draftt.auth.views
 
+import android.content.Context
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -17,8 +18,10 @@ import com.example.draftt.R
 import com.example.draftt.Utils
 import com.example.draftt.auth.viewmodels.SignUpViewModel
 import com.example.draftt.databinding.FragmentSignupBinding
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
+@AndroidEntryPoint
 class SignupFragment : Fragment() {
 
     private lateinit var binding: FragmentSignupBinding
@@ -41,12 +44,12 @@ class SignupFragment : Fragment() {
             when (authResult.status) {
                 true -> {
                     Timber.d("Successfully signed up!")
-                    Toast.makeText(requireContext(), "Successfully signed up!", Toast.LENGTH_SHORT)
+                    Toast.makeText(requireContext(), "Successfully signed up user, ${authResult.user?.email}!", Toast.LENGTH_SHORT)
                         .show()
                     binding.progressbar.visibility = View.GONE
+                    writeUserEmailToSharedPref(authResult.user?.email)
                     // TODO: Start another activity for authenticated users
                     // findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToAccountVerificationFragment())
-                    // TODO: Set user info here (if can't be done from ViewModel)
                 }
                 false -> {
                     Timber.d("Could not sign up")
@@ -55,6 +58,14 @@ class SignupFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun writeUserEmailToSharedPref(email: String?) {
+        val sharedPref = activity?.getSharedPreferences(getString(R.string.SHARED_PREF_FILE_KEY), Context.MODE_PRIVATE) ?: return
+        with(sharedPref.edit()){
+            putString(getString(R.string.SHARED_PREF_USER_EMAIL_KEY), email)
+            apply()
+        }
     }
 
     private fun setupListeners() {
