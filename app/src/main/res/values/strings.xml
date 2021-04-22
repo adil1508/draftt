@@ -37,4 +37,5 @@
     <string name="team_name_subtitle">Time to decide what truly matters</string>
     <string name="team_name_edittext_text">Enter team name</string>
     <string name="team_name_button">Let\'s go!</string>
+    <string name="SHARED_PREF_USER_EMAIL_KEY">USER_EMAIL</string>
 </resources>
