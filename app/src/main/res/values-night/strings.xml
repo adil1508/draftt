@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="SHARED_PREF_USER_EMAIL_KEY">USER_EMAIL</string>
+    <string name="SHARED_PREF_FILE_KEY">com.example.draftt.PREFERENCE_FILE_KEY</string>
 </resources>

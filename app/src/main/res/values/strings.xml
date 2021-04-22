@@ -38,4 +38,5 @@
     <string name="team_name_edittext_text">Enter team name</string>
     <string name="team_name_button">Let\'s go!</string>
     <string name="SHARED_PREF_USER_EMAIL_KEY">USER_EMAIL</string>
+    <string name="SHARED_PREF_FILE_KEY">com.example.draftt.PREFERENCE_FILE_KEY</string>
 </resources>
