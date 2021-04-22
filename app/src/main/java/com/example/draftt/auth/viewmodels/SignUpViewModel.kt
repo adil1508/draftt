@@ -22,6 +22,4 @@ class SignUpViewModel @Inject constructor(private val authRepository: FirebaseAu
         }
     }
 
-    fun logout() = authRepository.logout()
-
 }
