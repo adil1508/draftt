@@ -2,7 +2,6 @@ package com.aa.draftt
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.aa.draftt.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
