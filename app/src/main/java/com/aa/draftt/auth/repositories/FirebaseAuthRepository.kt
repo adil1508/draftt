@@ -24,9 +24,11 @@ class FirebaseAuthRepository @Inject constructor() {
         )
     )
     val authResult: LiveData<AuthResult>
-        get() {
-            return _authResult
-        }
+        get() = _authResult
+
+    private val _firebaseUser = MutableLiveData<FirebaseUser>()
+    val firebaseUser: LiveData<FirebaseUser>
+        get() = _firebaseUser
 
     // Firebase Auth Service
     private val firebaseAuth: FirebaseAuth by lazy {
