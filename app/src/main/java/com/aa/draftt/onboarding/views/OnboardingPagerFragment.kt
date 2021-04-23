@@ -1,4 +1,4 @@
-package com.example.draftt.onboarding.views
+package com.aa.draftt.onboarding.views
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.example.draftt.auth.views
+package com.aa.draftt.auth.views
 
 import android.content.Context
 import android.os.Bundle
@@ -15,8 +15,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.draftt.R
-import com.example.draftt.Utils
-import com.example.draftt.auth.viewmodels.SignUpViewModel
+import com.aa.draftt.Utils
+import com.aa.draftt.auth.viewmodels.SignUpViewModel
 import com.example.draftt.databinding.FragmentSignupBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber

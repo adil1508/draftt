@@ -1,4 +1,4 @@
-package com.example.draftt.onboarding.views
+package com.aa.draftt.onboarding.views
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import com.example.draftt.auth.views.AuthActivity
+import com.aa.draftt.auth.views.AuthActivity
 import com.example.draftt.databinding.OnboardingSlide1Binding
 import com.example.draftt.databinding.OnboardingSlide2Binding
 import com.example.draftt.databinding.OnboardingSlide3Binding
