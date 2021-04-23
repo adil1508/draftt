@@ -39,7 +39,13 @@ class FirebaseAuthRepository @Inject constructor() {
             firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Timber.d("Successfully logged in user with email: $email")
-                    _authResult.postValue(AuthResult(status = true, error = null, user = firebaseAuth.currentUser))
+                    _authResult.postValue(
+                        AuthResult(
+                            status = true,
+                            error = null,
+                            user = firebaseAuth.currentUser
+                        )
+                    )
                 } else {
                     Timber.d("Failed to log in user with email: $email")
                     _authResult.postValue(
@@ -61,7 +67,13 @@ class FirebaseAuthRepository @Inject constructor() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Timber.d("Successfully created user with email: $email")
-                        _authResult.postValue(AuthResult(status = true, error = null, user = firebaseAuth.currentUser))
+                        _authResult.postValue(
+                            AuthResult(
+                                status = true,
+                                error = null,
+                                user = firebaseAuth.currentUser
+                            )
+                        )
                     } else {
                         Timber.d("FAILED to create user with email: $email")
                         _authResult.postValue(

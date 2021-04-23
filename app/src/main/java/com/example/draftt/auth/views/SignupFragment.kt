@@ -44,7 +44,11 @@ class SignupFragment : Fragment() {
             when (authResult.status) {
                 true -> {
                     Timber.d("Successfully signed up!")
-                    Toast.makeText(requireContext(), "Successfully signed up user, ${authResult.user?.email}!", Toast.LENGTH_SHORT)
+                    Toast.makeText(
+                        requireContext(),
+                        "Successfully signed up user, ${authResult.user?.email}!",
+                        Toast.LENGTH_SHORT
+                    )
                         .show()
                     binding.progressbar.visibility = View.GONE
                     writeUserEmailToSharedPref(authResult.user?.email)
@@ -61,8 +65,11 @@ class SignupFragment : Fragment() {
     }
 
     private fun writeUserEmailToSharedPref(email: String?) {
-        val sharedPref = activity?.getSharedPreferences(getString(R.string.SHARED_PREF_FILE_KEY), Context.MODE_PRIVATE) ?: return
-        with(sharedPref.edit()){
+        val sharedPref = activity?.getSharedPreferences(
+            getString(R.string.SHARED_PREF_FILE_KEY),
+            Context.MODE_PRIVATE
+        ) ?: return
+        with(sharedPref.edit()) {
             putString(getString(R.string.SHARED_PREF_USER_EMAIL_KEY), email)
             apply()
         }

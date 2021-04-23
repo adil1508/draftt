@@ -45,14 +45,22 @@ class LoginFragment : Fragment() {
             when (authResult.status) {
                 true -> {
                     Timber.d("Logged in user with email: ${authResult.user?.email}")
-                    Toast.makeText(requireContext(), "Logged in user with email: ${authResult.user?.email}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Logged in user with email: ${authResult.user?.email}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     binding.progressbar.visibility = View.GONE
                     writeUserEmailToSharedPref(authResult.user?.email)
                     // TODO: Start another activity for authenticated users
                 }
                 false -> {
                     Timber.d("Could not Login user with email: ${binding.emailInputLayout.editText?.text.toString()}")
-                    Toast.makeText(requireContext(), "Could not Login user with email: ${binding.emailInputLayout.editText?.text.toString()}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Could not Login user with email: ${binding.emailInputLayout.editText?.text.toString()}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     binding.progressbar.visibility = View.GONE
                 }
             }
@@ -60,8 +68,11 @@ class LoginFragment : Fragment() {
     }
 
     private fun writeUserEmailToSharedPref(email: String?) {
-        val sharedPref = activity?.getSharedPreferences(getString(R.string.SHARED_PREF_FILE_KEY), Context.MODE_PRIVATE) ?: return
-        with(sharedPref.edit()){
+        val sharedPref = activity?.getSharedPreferences(
+            getString(R.string.SHARED_PREF_FILE_KEY),
+            Context.MODE_PRIVATE
+        ) ?: return
+        with(sharedPref.edit()) {
             putString(getString(R.string.SHARED_PREF_USER_EMAIL_KEY), email)
             apply()
         }
@@ -136,7 +147,6 @@ class LoginFragment : Fragment() {
     }
 
     companion object {
-
         @JvmStatic
         fun newInstance() = LoginFragment()
     }
