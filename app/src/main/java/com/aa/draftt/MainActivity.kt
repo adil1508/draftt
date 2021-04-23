@@ -1,15 +1,12 @@
-package com.example.draftt.auth.views
+package com.aa.draftt
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.draftt.R
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
-class AuthActivity : AppCompatActivity() {
-
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login_layout)
+        setContentView(R.layout.activity_main)
     }
 }

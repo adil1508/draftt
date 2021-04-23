@@ -1,4 +1,4 @@
-package com.example.draftt.auth.repositories
+package com.aa.draftt.auth.repositories
 
 import com.google.firebase.auth.FirebaseUser
 

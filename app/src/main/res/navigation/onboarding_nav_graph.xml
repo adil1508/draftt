@@ -7,11 +7,11 @@
 
     <fragment
         android:id="@+id/onboardingFragment"
-        android:name="com.example.draftt.onboarding.views.OnboardingPagerFragment"
+        android:name="com.aa.draftt.onboarding.views.OnboardingPagerFragment"
         android:label="OnboardingFragment"
         tools:layout="@layout/onboarding_fragment_layout" />
     <fragment
         android:id="@+id/onboardingScreenFragment"
-        android:name="com.example.draftt.onboarding.views.OnboardingScreenFragment"
+        android:name="com.aa.draftt.onboarding.views.OnboardingScreenFragment"
         android:label="OnboardingScreenFragment" />
 </navigation>

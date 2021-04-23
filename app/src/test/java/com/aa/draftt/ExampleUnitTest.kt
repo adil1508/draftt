@@ -1,4 +1,4 @@
-package com.example.draftt
+package com.aa.draftt
 
 import org.junit.Test
 

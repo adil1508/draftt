@@ -1,4 +1,4 @@
-package com.example.draftt.auth.views
+package com.aa.draftt.auth.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
