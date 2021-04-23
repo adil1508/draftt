@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.draftt.databinding.OnboardingFragmentLayoutBinding
+import com.aa.draftt.databinding.OnboardingFragmentLayoutBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
 class OnboardingPagerFragment : Fragment() {

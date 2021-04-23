@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.draftt.databinding.FragmentAccountVerificationBinding
+import com.aa.draftt.databinding.FragmentAccountVerificationBinding
 
 class AccountVerificationFragment : Fragment() {
 
