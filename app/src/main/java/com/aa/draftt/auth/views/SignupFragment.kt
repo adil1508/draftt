@@ -14,10 +14,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.draftt.R
+import com.aa.draftt.R
 import com.aa.draftt.Utils
 import com.aa.draftt.auth.viewmodels.SignUpViewModel
-import com.example.draftt.databinding.FragmentSignupBinding
+import com.aa.draftt.databinding.FragmentSignupBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
