@@ -12,7 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.aa.draftt.R
 import com.aa.draftt.Utils
@@ -25,7 +25,7 @@ import timber.log.Timber
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
-    private lateinit var viewModel: AuthViewModel
+    private val viewModel: AuthViewModel by activityViewModels()    // gets the viewmodel shared by parent activity
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +33,6 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
         setupLiveDataObservers()
         setupListeners()
         return binding.root
@@ -43,25 +42,31 @@ class LoginFragment : Fragment() {
         viewModel.authResult.observe(viewLifecycleOwner, { authResult ->
             when (authResult.status) {
                 true -> {
-                    Timber.d("Logged in user with email: ${viewModel.user.value?.email}")
-                    Toast.makeText(
-                        requireContext(),
-                        "Logged in user with email: ${viewModel.user.value?.email}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Timber.d("Successfully called Login API")
                     binding.progressbar.visibility = View.GONE
-                    writeUserEmailToSharedPref(viewModel.user.value?.email)
                     // TODO: Start another activity for authenticated users
                 }
                 false -> {
-                    Timber.d("Could not Login user with email: ${binding.emailInputLayout.editText?.text.toString()}")
-                    Toast.makeText(
-                        requireContext(),
-                        "Could not Login user with email: ${binding.emailInputLayout.editText?.text.toString()}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Timber.d("Failed to call Login API")
                     binding.progressbar.visibility = View.GONE
                 }
+            }
+        })
+
+        viewModel.user.observe(viewLifecycleOwner, { user ->
+            if (user != null) {
+                Toast.makeText(
+                    requireContext(),
+                    "Logged in user with email: ${user.email}",
+                    Toast.LENGTH_LONG
+                ).show()
+                writeUserEmailToSharedPref(viewModel.user.value?.email)
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Could not log in user",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         })
     }

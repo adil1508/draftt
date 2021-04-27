@@ -9,20 +9,14 @@ import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
-class AuthViewModel @Inject constructor(private val authRepository: FirebaseAuthRepository): ViewModel() {
+class AuthViewModel @Inject constructor(private val authRepository: FirebaseAuthRepository) :
+    ViewModel() {
 
     val authResult: LiveData<AuthResult> = authRepository.authResult
-    val user: LiveData<FirebaseUser> = authRepository.firebaseUser
-
-    init {
-        runBlocking{
-            authRepository.currentUser()
-        }
-    }
+    val user: LiveData<FirebaseUser?> = authRepository.firebaseUser
 
     fun login(email: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -33,6 +27,12 @@ class AuthViewModel @Inject constructor(private val authRepository: FirebaseAuth
     fun signup(email: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
             authRepository.signup(email, password)
+        }
+    }
+
+    fun currentUser() {
+        viewModelScope.launch(Dispatchers.IO) {
+            authRepository.currentUser()
         }
     }
 
