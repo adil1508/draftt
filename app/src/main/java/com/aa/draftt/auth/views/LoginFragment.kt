@@ -16,7 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.aa.draftt.R
 import com.aa.draftt.Utils
-import com.aa.draftt.auth.viewmodels.LoginViewModel
+import com.aa.draftt.auth.viewmodels.AuthViewModel
 import com.aa.draftt.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -25,7 +25,7 @@ import timber.log.Timber
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
-    private lateinit var viewModel: LoginViewModel
+    private lateinit var viewModel: AuthViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +33,7 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
         setupLiveDataObservers()
         setupListeners()
         return binding.root
