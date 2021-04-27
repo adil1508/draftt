@@ -18,6 +18,8 @@
         </activity>
         <activity android:name="com.aa.draftt.auth.views.AuthActivity">
         </activity>
+        <activity android:name="com.aa.draftt.views.HomeActivity">
+        </activity>
     </application>
 
 </manifest>
