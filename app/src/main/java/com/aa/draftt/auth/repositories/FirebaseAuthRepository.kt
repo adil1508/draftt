@@ -17,11 +17,7 @@ class FirebaseAuthRepository @Inject constructor() {
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 
     private val _authResult = MutableLiveData(
-        AuthResult(
-            status = null,
-            error = null,
-            user = null
-        )
+        AuthResult(status = null, error = null)
     )
     val authResult: LiveData<AuthResult>
         get() = _authResult
@@ -37,24 +33,17 @@ class FirebaseAuthRepository @Inject constructor() {
 
     suspend fun login(email: String, password: String) {
         withContext(ioDispatcher) {
-
             firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Timber.d("Successfully logged in user with email: $email")
-                    _authResult.postValue(
-                        AuthResult(
-                            status = true,
-                            error = null,
-                            user = firebaseAuth.currentUser
-                        )
-                    )
+                    _authResult.postValue(AuthResult(status = true, error = null))
+                    _firebaseUser.postValue(firebaseAuth.currentUser)
                 } else {
                     Timber.d("Failed to log in user with email: $email")
                     _authResult.postValue(
                         AuthResult(
                             status = false,
-                            error = task.exception.toString(),
-                            user = null
+                            error = task.exception.toString()
                         )
                     )
                 }
@@ -64,25 +53,18 @@ class FirebaseAuthRepository @Inject constructor() {
 
     suspend fun signup(email: String, password: String) {
         withContext(ioDispatcher) {
-
             firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Timber.d("Successfully created user with email: $email")
-                        _authResult.postValue(
-                            AuthResult(
-                                status = true,
-                                error = null,
-                                user = firebaseAuth.currentUser
-                            )
-                        )
+                        _authResult.postValue(AuthResult(status = true, error = null))
+                        _firebaseUser.postValue(firebaseAuth.currentUser)
                     } else {
                         Timber.d("FAILED to create user with email: $email")
                         _authResult.postValue(
                             AuthResult(
                                 status = false,
-                                error = task.exception.toString(),
-                                user = null
+                                error = task.exception.toString()
                             )
                         )
                     }

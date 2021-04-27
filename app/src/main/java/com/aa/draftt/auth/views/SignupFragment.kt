@@ -46,12 +46,12 @@ class SignupFragment : Fragment() {
                     Timber.d("Successfully signed up!")
                     Toast.makeText(
                         requireContext(),
-                        "Successfully signed up user, ${authResult.user?.email}!",
+                        "Successfully signed up user, ${viewModel.user.value?.email}!",
                         Toast.LENGTH_SHORT
                     )
                         .show()
                     binding.progressbar.visibility = View.GONE
-                    writeUserEmailToSharedPref(authResult.user?.email)
+                    writeUserEmailToSharedPref(viewModel.user.value?.email)
                     // TODO: Start another activity for authenticated users
                     // findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToAccountVerificationFragment())
                 }
