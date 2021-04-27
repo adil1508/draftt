@@ -50,9 +50,6 @@ class SignupFragment : Fragment() {
                     writeUserEmailToSharedPref(viewModel.user.value?.email)
                     // TODO: Start another activity for authenticated users
                     // findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToAccountVerificationFragment())
-                    // TODO: Testing! remove after testing
-                    val intent = Intent(requireContext(), HomeActivity::class.java)
-                    startActivity(intent)
                 }
                 false -> {
                     Timber.d("Could not sign up")
