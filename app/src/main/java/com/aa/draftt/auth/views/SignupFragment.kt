@@ -1,6 +1,7 @@
 package com.aa.draftt.auth.views
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -12,12 +13,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.aa.draftt.R
 import com.aa.draftt.Utils
 import com.aa.draftt.auth.viewmodels.AuthViewModel
 import com.aa.draftt.databinding.FragmentSignupBinding
+import com.aa.draftt.views.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -25,7 +28,7 @@ import timber.log.Timber
 class SignupFragment : Fragment() {
 
     private lateinit var binding: FragmentSignupBinding
-    private lateinit var viewModel: AuthViewModel
+    private val viewModel: AuthViewModel by activityViewModels()    // shared viewmodel with activity
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +36,6 @@ class SignupFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSignupBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
         setupLiveDataObservers()
         setupListeners()
         return binding.root
@@ -44,22 +46,35 @@ class SignupFragment : Fragment() {
             when (authResult.status) {
                 true -> {
                     Timber.d("Successfully signed up!")
-                    Toast.makeText(
-                        requireContext(),
-                        "Successfully signed up user, ${viewModel.user.value?.email}!",
-                        Toast.LENGTH_SHORT
-                    )
-                        .show()
                     binding.progressbar.visibility = View.GONE
                     writeUserEmailToSharedPref(viewModel.user.value?.email)
                     // TODO: Start another activity for authenticated users
                     // findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToAccountVerificationFragment())
+                    // TODO: Testing! remove after testing
+                    val intent = Intent(requireContext(), HomeActivity::class.java)
+                    startActivity(intent)
                 }
                 false -> {
                     Timber.d("Could not sign up")
-                    Toast.makeText(requireContext(), "Could not sign up", Toast.LENGTH_SHORT).show()
                     binding.progressbar.visibility = View.GONE
                 }
+            }
+        })
+
+        viewModel.user.observe(viewLifecycleOwner, { user ->
+            if (user != null) {
+                Toast.makeText(
+                    requireContext(),
+                    "Signed up user with email: ${user.email}",
+                    Toast.LENGTH_LONG
+                ).show()
+                writeUserEmailToSharedPref(viewModel.user.value?.email)
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Could not Sign up user",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         })
     }
