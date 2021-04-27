@@ -48,7 +48,10 @@ class LoginFragment : Fragment() {
                     binding.progressbar.visibility = View.GONE
 
                     val intent = Intent(requireContext(), HomeActivity::class.java)
+                    // These flags clear all activities on the stack
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
+                    requireActivity().finish()
                 }
                 false -> {
                     Timber.d("Failed to call Login API")
