@@ -14,30 +14,33 @@ import javax.inject.Inject
 
 class FirebaseAuthRepository @Inject constructor() {
 
+    // Firebase Auth Service
+    private val firebaseAuth: FirebaseAuth by lazy {
+        Firebase.auth
+    }
+
+    // Injecting this in -- good practice (efficient)
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 
+    // Stores results of making login/signup calls
     private val _authResult = MutableLiveData(
         AuthResult(status = null, error = null)
     )
     val authResult: LiveData<AuthResult>
         get() = _authResult
 
-    private val _firebaseUser = MutableLiveData<FirebaseUser>()
-    val firebaseUser: LiveData<FirebaseUser>
+    // Stores current logged in user
+    private val _firebaseUser = MutableLiveData(firebaseAuth.currentUser)
+    val firebaseUser: LiveData<FirebaseUser?>
         get() = _firebaseUser
-
-    // Firebase Auth Service
-    private val firebaseAuth: FirebaseAuth by lazy {
-        Firebase.auth
-    }
 
     suspend fun login(email: String, password: String) {
         withContext(ioDispatcher) {
             firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Timber.d("Successfully logged in user with email: $email")
-                    _authResult.postValue(AuthResult(status = true, error = null))
                     _firebaseUser.postValue(firebaseAuth.currentUser)
+                    _authResult.postValue(AuthResult(status = true, error = null))
                 } else {
                     Timber.d("Failed to log in user with email: $email")
                     _authResult.postValue(
@@ -57,8 +60,8 @@ class FirebaseAuthRepository @Inject constructor() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Timber.d("Successfully created user with email: $email")
-                        _authResult.postValue(AuthResult(status = true, error = null))
                         _firebaseUser.postValue(firebaseAuth.currentUser)
+                        _authResult.postValue(AuthResult(status = true, error = null))
                     } else {
                         Timber.d("FAILED to create user with email: $email")
                         _authResult.postValue(
@@ -73,8 +76,10 @@ class FirebaseAuthRepository @Inject constructor() {
 
     }
 
-    fun currentUser(): FirebaseUser? {
-        return firebaseAuth.currentUser
+    suspend fun currentUser() {
+        withContext(ioDispatcher) {
+            _firebaseUser.postValue(firebaseAuth.currentUser)
+        }
     }
 
     // TODO: Add logging when implement this properly
