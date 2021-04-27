@@ -43,14 +43,14 @@ class LoginFragment : Fragment() {
         viewModel.authResult.observe(viewLifecycleOwner, { authResult ->
             when (authResult.status) {
                 true -> {
-                    Timber.d("Logged in user with email: ${authResult.user?.email}")
+                    Timber.d("Logged in user with email: ${viewModel.user.value?.email}")
                     Toast.makeText(
                         requireContext(),
-                        "Logged in user with email: ${authResult.user?.email}",
+                        "Logged in user with email: ${viewModel.user.value?.email}",
                         Toast.LENGTH_SHORT
                     ).show()
                     binding.progressbar.visibility = View.GONE
-                    writeUserEmailToSharedPref(authResult.user?.email)
+                    writeUserEmailToSharedPref(viewModel.user.value?.email)
                     // TODO: Start another activity for authenticated users
                 }
                 false -> {
