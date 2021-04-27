@@ -30,7 +30,10 @@ class AuthActivity : AppCompatActivity() {
             // Go on to Home Activity
             Timber.d("User logged in")
             val intent = Intent(this, HomeActivity::class.java)
+            // These flags clear all activities on the stack
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
+            finish()
         }
 
         setContentView(R.layout.activity_login_layout)
