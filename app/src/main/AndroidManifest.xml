@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/draftt_app_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Draftt">
-        <activity android:name="com.aa.draftt.MainActivity">
+        <activity android:name="com.aa.draftt.RedHypergiantActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
