@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/auth_nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/onboardingPagerFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -70,4 +70,16 @@
         android:id="@+id/teamNameFragment"
         android:name="com.aa.draftt.auth.views.TeamNameFragment"
         android:label="TeamNameFragment" />
+    <fragment
+        android:id="@+id/onboardingPagerFragment"
+        android:name="com.aa.draftt.views.onboarding.OnboardingPagerFragment"
+        android:label="OnboardingPagerFragment">
+        <action
+            android:id="@+id/action_OnboardingPagerFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
 </navigation>
