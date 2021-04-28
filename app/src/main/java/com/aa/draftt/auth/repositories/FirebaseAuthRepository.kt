@@ -43,6 +43,7 @@ class FirebaseAuthRepository @Inject constructor() {
                     _authResult.postValue(AuthResult(status = true, error = null))
                 } else {
                     Timber.d("Failed to log in user with email: $email")
+                    _firebaseUser.postValue(null)
                     _authResult.postValue(
                         AuthResult(
                             status = false,
@@ -64,6 +65,7 @@ class FirebaseAuthRepository @Inject constructor() {
                         _authResult.postValue(AuthResult(status = true, error = null))
                     } else {
                         Timber.d("FAILED to create user with email: $email")
+                        _firebaseUser.postValue(null)
                         _authResult.postValue(
                             AuthResult(
                                 status = false,
@@ -83,5 +85,5 @@ class FirebaseAuthRepository @Inject constructor() {
     }
 
     // TODO: Add logging when implement this properly
-    fun signout() = firebaseAuth.signOut()
+    suspend fun signout() = withContext(ioDispatcher) { firebaseAuth.signOut() }
 }
