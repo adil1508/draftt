@@ -1,4 +1,4 @@
-package com.aa.draftt.views.onboarding
+package com.aa.draftt.auth.onboarding
 
 import android.content.Intent
 import android.os.Bundle
