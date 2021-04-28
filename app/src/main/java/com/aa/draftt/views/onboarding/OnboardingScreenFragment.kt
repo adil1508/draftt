@@ -7,13 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.aa.draftt.auth.views.AuthActivity
 import com.aa.draftt.databinding.OnboardingSlide1Binding
 import com.aa.draftt.databinding.OnboardingSlide2Binding
 import com.aa.draftt.databinding.OnboardingSlide3Binding
 import timber.log.Timber
 
-class OnboardingScreenFragment() : Fragment() {
+class OnboardingScreenFragment : Fragment() {
 
     private val position by lazy { arguments!!.getInt(POSITION_KEY) }
 
@@ -29,7 +30,7 @@ class OnboardingScreenFragment() : Fragment() {
                 val binding: OnboardingSlide3Binding =
                     OnboardingSlide3Binding.inflate(inflater, container, false)
                 binding.letsDrafttButton.setOnClickListener {
-                    startLoginActivity()
+                    findNavController().navigate(OnboardingPagerFragmentDirections.actionOnboardingPagerFragmentToLoginFragment())
                 }
                 binding.root
             }
