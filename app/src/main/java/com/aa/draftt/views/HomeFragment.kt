@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.aa.draftt.MainActivity
+import com.aa.draftt.RedHypergiantActivity
 import com.aa.draftt.R
 import com.aa.draftt.databinding.FragmentHomeBinding
 import com.aa.draftt.viewmodels.HomeViewModel
@@ -54,7 +54,7 @@ class HomeFragment @Inject constructor(): Fragment() {
             // Log the user out
             viewModel.signout()
             // Navigate to main activity
-            val intent = Intent(requireContext(), MainActivity::class.java)
+            val intent = Intent(requireContext(), RedHypergiantActivity::class.java)
             startActivity(intent)
         }
     }
