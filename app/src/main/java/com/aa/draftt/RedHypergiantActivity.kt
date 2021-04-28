@@ -17,6 +17,7 @@ class RedHypergiantActivity : AppCompatActivity() {
 
         val intent = Intent(this, AuthActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
         startActivity(intent)
         finish()
     }
