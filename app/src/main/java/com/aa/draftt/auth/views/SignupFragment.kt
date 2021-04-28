@@ -48,8 +48,12 @@ class SignupFragment : Fragment() {
                     Timber.d("Successfully signed up!")
                     binding.progressbar.visibility = View.GONE
                     writeUserEmailToSharedPref(viewModel.user.value?.email)
-                    // TODO: Start another activity for authenticated users
-                    // findNavController().navigate(SignupFragmentDirections.actionSignupFragmentToAccountVerificationFragment())
+
+                    val intent = Intent(requireContext(), HomeActivity::class.java)
+                    // These flags clear all activities on the stack
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    requireActivity().finish()
                 }
                 false -> {
                     Timber.d("Could not sign up")
