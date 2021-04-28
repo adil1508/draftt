@@ -10,8 +10,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val firebaseAuthRepository: FirebaseAuthRepository): ViewModel(){
-
-
     fun signout(){
         viewModelScope.launch(Dispatchers.IO) {
             firebaseAuthRepository.signout()
