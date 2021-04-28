@@ -21,11 +21,7 @@ class AuthActivity : AppCompatActivity() {
         // shared view model
         viewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
 
-        if (viewModel.user.value == null) {
-            // user not logged in
-            // set Login navigation graph
-            Timber.d("User NOT logged in")
-        } else {
+        if (viewModel.user.value != null) {
             // user logged in
             // Go on to Home Activity
             Timber.d("User logged in")
@@ -34,9 +30,14 @@ class AuthActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()
-        }
 
-        setContentView(R.layout.activity_auth_layout)
+        } else {
+            // user not logged in
+            // set Login navigation graph
+            Timber.d("User NOT logged in")
+            setContentView(R.layout.activity_auth_layout)
+
+        }
 
     }
 }

@@ -83,5 +83,5 @@ class FirebaseAuthRepository @Inject constructor() {
     }
 
     // TODO: Add logging when implement this properly
-    fun logout() = firebaseAuth.signOut()
+    fun signout() = firebaseAuth.signOut()
 }
