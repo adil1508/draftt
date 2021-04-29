@@ -4,23 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
 
-class FirebaseAuthRepository @Inject constructor() {
-
-    // Firebase Auth Service
-    private val firebaseAuth: FirebaseAuth by lazy {
-        Firebase.auth
-    }
-
-    // Injecting this in -- good practice (efficient)
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+class FirebaseAuthRepository @Inject constructor(private val firebaseAuth: FirebaseAuth) {
 
     // Stores results of making login/signup calls
     private val _authResult = MutableLiveData(
@@ -35,7 +24,7 @@ class FirebaseAuthRepository @Inject constructor() {
         get() = _firebaseUser
 
     suspend fun login(email: String, password: String) {
-        withContext(ioDispatcher) {
+        withContext(Dispatchers.IO) {
             firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Timber.d("Successfully logged in user with email: $email")
@@ -56,7 +45,7 @@ class FirebaseAuthRepository @Inject constructor() {
     }
 
     suspend fun signup(email: String, password: String) {
-        withContext(ioDispatcher) {
+        withContext(Dispatchers.IO) {
             firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
@@ -79,11 +68,11 @@ class FirebaseAuthRepository @Inject constructor() {
     }
 
     suspend fun currentUser() {
-        withContext(ioDispatcher) {
+        withContext(Dispatchers.IO) {
             _firebaseUser.postValue(firebaseAuth.currentUser)
         }
     }
 
     // TODO: Add logging when implement this properly
-    suspend fun signout() = withContext(ioDispatcher) { firebaseAuth.signOut() }
+    suspend fun signout() = withContext(Dispatchers.IO) { firebaseAuth.signOut() }
 }
