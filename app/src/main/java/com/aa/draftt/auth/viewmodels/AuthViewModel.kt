@@ -6,12 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aa.draftt.auth.repositories.AuthRepository
 import com.aa.draftt.auth.repositories.AuthResult
-import com.aa.draftt.auth.repositories.FirebaseAuthRepository
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -30,6 +28,7 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
     private val _firebaseUser = MutableLiveData<FirebaseUser>(currentUser())
     val firebaseUser: LiveData<FirebaseUser?>
         get() = _firebaseUser
+
 
     fun login(email: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -55,12 +54,28 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
 
     fun signup(email: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            authRepository.signup(email, password)
+            val task = authRepository.signup(email, password)
+            task.addOnCompleteListener {
+                if (task.isSuccessful) {
+                    Timber.d("Successfully signed up user with email: $email")
+                    _firebaseUser.postValue(it.result!!.user)
+                    _authResult.postValue(AuthResult(status = true, error = null))
+                } else {
+                    Timber.d("Failed to sign up user with email: $email")
+                    _firebaseUser.postValue(null)
+                    _authResult.postValue(
+                        AuthResult(
+                            status = false,
+                            error = task.exception.toString()
+                        )
+                    )
+                }
+            }
         }
     }
 
     // updates the current user live data
-    private fun currentUser(): FirebaseUser?{
+    private fun currentUser(): FirebaseUser? {
         return authRepository.currentUser()
     }
 
