@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.aa.draftt.auth.repositories.AuthRepository
 import com.aa.draftt.auth.repositories.AuthResult
 import com.aa.draftt.auth.repositories.FirebaseAuthRepository
 import com.google.firebase.auth.FirebaseUser
@@ -15,7 +16,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class AuthViewModel @Inject constructor(private val authRepository: FirebaseAuthRepository) :
+class AuthViewModel @Inject constructor(private val authRepository: AuthRepository) :
     ViewModel() {
 
     // Stores results of making login/signup calls
