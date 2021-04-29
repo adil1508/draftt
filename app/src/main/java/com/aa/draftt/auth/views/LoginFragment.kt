@@ -60,20 +60,21 @@ class LoginFragment : Fragment() {
             }
         })
 
-        viewModel.user.observe(viewLifecycleOwner, { user ->
+        viewModel.firebaseUser.observe(viewLifecycleOwner, { user ->
             if (user != null) {
                 Toast.makeText(
                     requireContext(),
                     "Logged in user with email: ${user.email}",
                     Toast.LENGTH_LONG
                 ).show()
-                writeUserEmailToSharedPref(viewModel.user.value?.email)
+                writeUserEmailToSharedPref(user.email)
             } else {
                 Toast.makeText(
                     requireContext(),
                     "Could not log in user",
                     Toast.LENGTH_LONG
                 ).show()
+                writeUserEmailToSharedPref(null)
             }
         })
     }
