@@ -21,13 +21,14 @@ class AuthActivity : AppCompatActivity() {
         // shared view model
         viewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
 
-        if (viewModel.user.value != null) {
+        if (viewModel.firebaseUser.value != null) {
             // user logged in
             // Go on to Home Activity
             Timber.d("User logged in")
             val intent = Intent(this, HomeActivity::class.java)
             // These flags clear all activities on the stack
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
             finish()
 
