@@ -44,7 +44,7 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
                     _authResult.postValue(
                         AuthResult(
                             status = false,
-                            error = task.exception.toString()
+                            error = task.exception?.localizedMessage.toString()
                         )
                     )
                 }
@@ -66,7 +66,7 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
                     _authResult.postValue(
                         AuthResult(
                             status = false,
-                            error = task.exception.toString()
+                            error = task.exception?.localizedMessage.toString()
                         )
                     )
                 }

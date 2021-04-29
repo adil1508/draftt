@@ -55,6 +55,11 @@ class LoginFragment : Fragment() {
                 }
                 false -> {
                     Timber.d("Failed to call Login API")
+                    Toast.makeText(
+                        requireContext(),
+                        authResult.error,
+                        Toast.LENGTH_LONG
+                    ).show()
                     binding.progressbar.visibility = View.GONE
                 }
             }
@@ -69,11 +74,6 @@ class LoginFragment : Fragment() {
                 ).show()
                 writeUserEmailToSharedPref(user.email)
             } else {
-                Toast.makeText(
-                    requireContext(),
-                    "Could not log in user",
-                    Toast.LENGTH_LONG
-                ).show()
                 writeUserEmailToSharedPref(null)
             }
         })
