@@ -7,14 +7,22 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class DrafttModule {
+class DrafttProvidesModule {
 
     @Provides
-    fun providesFirebaseAuthService(): FirebaseAuth{
+    @Singleton
+    fun providesFirebaseAuthService(): FirebaseAuth {
         return Firebase.auth
     }
 
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class DrafttBindingsModule {
+    // for interfaces
 }
