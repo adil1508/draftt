@@ -33,4 +33,5 @@ abstract class DrafttBindingsModule {
     abstract fun bindAuthRepository(
         firebaseAuthRepository: FirebaseAuthRepository
     ): AuthRepository
+    
 }
