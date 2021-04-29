@@ -56,6 +56,11 @@ class SignupFragment : Fragment() {
                 }
                 false -> {
                     Timber.d("Could not sign up")
+                    Toast.makeText(
+                        requireContext(),
+                        authResult.error,
+                        Toast.LENGTH_LONG
+                    ).show()
                     binding.progressbar.visibility = View.GONE
                 }
             }
@@ -70,11 +75,6 @@ class SignupFragment : Fragment() {
                 ).show()
                 writeUserEmailToSharedPref(user.email)
             } else {
-                Toast.makeText(
-                    requireContext(),
-                    "Could not Sign up user",
-                    Toast.LENGTH_LONG
-                ).show()
                 writeUserEmailToSharedPref(null)
             }
         })
