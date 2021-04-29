@@ -10,24 +10,24 @@ import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
 
-class FirebaseAuthRepository @Inject constructor(private val firebaseAuth: FirebaseAuth) {
+class FirebaseAuthRepository @Inject constructor(private val firebaseAuth: FirebaseAuth): AuthRepository {
 
-    suspend fun login(email: String, password: String): Task<com.google.firebase.auth.AuthResult> {
+    override suspend fun login(email: String, password: String): Task<com.google.firebase.auth.AuthResult> {
         return withContext(Dispatchers.IO) {
             firebaseAuth.signInWithEmailAndPassword(email, password)
         }
     }
 
-    suspend fun signup(email: String, password: String): Task<com.google.firebase.auth.AuthResult> {
+    override suspend fun signup(email: String, password: String): Task<com.google.firebase.auth.AuthResult> {
         return withContext(Dispatchers.IO) {
             firebaseAuth.createUserWithEmailAndPassword(email, password)
         }
     }
 
-    fun currentUser(): FirebaseUser? {
+    override fun currentUser(): FirebaseUser? {
         return firebaseAuth.currentUser
     }
 
     // TODO: Add logging when implement this properly
-    suspend fun signout() = withContext(Dispatchers.IO) { firebaseAuth.signOut() }
+    override suspend fun signout() = withContext(Dispatchers.IO) { firebaseAuth.signOut() }
 }
