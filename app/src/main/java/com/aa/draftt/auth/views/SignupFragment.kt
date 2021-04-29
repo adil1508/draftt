@@ -47,7 +47,6 @@ class SignupFragment : Fragment() {
                 true -> {
                     Timber.d("Successfully signed up!")
                     binding.progressbar.visibility = View.GONE
-                    writeUserEmailToSharedPref(viewModel.user.value?.email)
 
                     val intent = Intent(requireContext(), HomeActivity::class.java)
                     // These flags clear all activities on the stack
@@ -62,20 +61,21 @@ class SignupFragment : Fragment() {
             }
         })
 
-        viewModel.user.observe(viewLifecycleOwner, { user ->
+        viewModel.firebaseUser.observe(viewLifecycleOwner, { user ->
             if (user != null) {
                 Toast.makeText(
                     requireContext(),
                     "Signed up user with email: ${user.email}",
                     Toast.LENGTH_LONG
                 ).show()
-                writeUserEmailToSharedPref(viewModel.user.value?.email)
+                writeUserEmailToSharedPref(user.email)
             } else {
                 Toast.makeText(
                     requireContext(),
                     "Could not Sign up user",
                     Toast.LENGTH_LONG
                 ).show()
+                writeUserEmailToSharedPref(null)
             }
         })
     }
