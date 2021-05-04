@@ -56,6 +56,7 @@ class FirebaseAuthRepository @Inject constructor(
     }
 
     override fun currentUser(): FirebaseUser? {
+        // Need to figure out if we want to return user from firebase or local cache
         return firebaseAuth.currentUser
     }
 
