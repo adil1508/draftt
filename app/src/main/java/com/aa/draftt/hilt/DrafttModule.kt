@@ -27,6 +27,11 @@ class DrafttProvidesModule {
         return Firebase.auth
     }
 
+    @Provides
+    fun provideUserDao(drafttDatabase: DrafttDatabase): UserDao {
+        return drafttDatabase.userDao()
+    }
+
     // provides the dependency needed by Dao providers
     @Provides
     @Singleton
@@ -38,10 +43,7 @@ class DrafttProvidesModule {
         ).build()
     }
 
-    @Provides
-    fun provideUserDao(drafttDatabase: DrafttDatabase): UserDao {
-        return drafttDatabase.userDao()
-    }
+
 
 }
 
