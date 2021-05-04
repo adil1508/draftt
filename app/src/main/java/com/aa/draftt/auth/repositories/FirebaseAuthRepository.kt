@@ -1,5 +1,6 @@
 package com.aa.draftt.auth.repositories
 
+import com.aa.draftt.room.dao.UserDao
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -7,8 +8,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class FirebaseAuthRepository @Inject constructor(private val firebaseAuth: FirebaseAuth) :
-    AuthRepository {
+class FirebaseAuthRepository @Inject constructor(
+    private val firebaseAuth: FirebaseAuth,
+    private val userDao: UserDao
+) : AuthRepository {
 
     override suspend fun login(
         email: String,
