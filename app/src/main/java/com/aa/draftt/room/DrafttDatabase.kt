@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.aa.draftt.room.dao.UserDao
 import com.aa.draftt.room.models.User
 
-@Database(entities = arrayOf(User::class), version = 1)
+@Database(entities = arrayOf(User::class), version = 2)
 abstract class DrafttDatabase: RoomDatabase() {
     abstract fun userDao(): UserDao
 }
