@@ -45,9 +45,7 @@ class DrafttProvidesModule {
             DatabaseMigrations.MIGRATION_1_2
         ).build()
     }
-
-
-
+    
 }
 
 @Module
@@ -59,5 +57,5 @@ abstract class DrafttBindingsModule {
     abstract fun bindAuthRepository(
         firebaseAuthRepository: FirebaseAuthRepository
     ): AuthRepository
-    
+
 }
