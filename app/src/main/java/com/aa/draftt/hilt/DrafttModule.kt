@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.aa.draftt.auth.repositories.AuthRepository
 import com.aa.draftt.auth.repositories.FirebaseAuthRepository
+import com.aa.draftt.room.DatabaseMigrations
 import com.aa.draftt.room.DrafttDatabase
 import com.aa.draftt.room.dao.UserDao
 import com.google.firebase.auth.FirebaseAuth
@@ -40,6 +41,8 @@ class DrafttProvidesModule {
             context,
             DrafttDatabase::class.java,
             "DrafttDatabase"
+        ).addMigrations(
+            DatabaseMigrations.MIGRATION_1_2
         ).build()
     }
 
