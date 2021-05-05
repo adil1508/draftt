@@ -60,8 +60,6 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
             task.addOnCompleteListener {
                 if (task.isSuccessful) {
                     Timber.d("Successfully signed up user with email: $email")
-                    // Need to write user info in the db
-                    writeUserInfoToDB()
                     // Instead of posting the value of it.result!!.user, we need to get it from db
                     _firebaseUser.postValue(it.result!!.user)
                     _authResult.postValue(AuthResult(status = true, error = null))
@@ -76,12 +74,6 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
                     )
                 }
             }
-        }
-    }
-
-    private fun writeUserInfoToDB(){
-        viewModelScope.launch {
-            authRepository.writeUserToDatabase("Test", "Test@test.com")
         }
     }
 
