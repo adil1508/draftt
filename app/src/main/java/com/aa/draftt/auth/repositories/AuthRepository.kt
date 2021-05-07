@@ -12,8 +12,6 @@ interface AuthRepository {
 
     fun currentUser(): FirebaseUser?
 
-    suspend fun writeUserToDatabase(name: String, email: String)
-
     // TODO: Add logging when implement this properly
     suspend fun signout()
 }
