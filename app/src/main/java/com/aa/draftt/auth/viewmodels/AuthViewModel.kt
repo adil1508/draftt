@@ -4,12 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aa.draftt.models.AuthResult
-import com.aa.draftt.models.UserModel
 import com.aa.draftt.auth.repositories.AuthRepository
-import com.google.android.gms.tasks.Task
+import com.aa.draftt.models.UserModel
 import com.google.android.gms.tasks.Tasks
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestoreException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -28,28 +25,19 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
     val navigateToAuthenticated: LiveData<Boolean>
         get() = _navigateToAuthenticated
 
-    // Stores results of making login/signup calls
-    private val _authResult = MutableLiveData(
-        AuthResult(status = null, error = null)
-    )
-    val authResult: LiveData<AuthResult>
-        get() = _authResult
-
     // Store user info using our model
     private val _user = MutableLiveData(UserModel())
     val user: LiveData<UserModel>
         get() = _user
 
-    // For observing error
+    // For observing errors
     private val _error = MutableLiveData<String>()
     val error: LiveData<String>
         get() = _error
 
-    // Stores current logged in user
-    private val _firebaseUser = MutableLiveData<FirebaseUser>(currentUser())
-    val firebaseUser: LiveData<FirebaseUser?>
-        get() = _firebaseUser
-
+    init {
+        updateCurrentUser()
+    }
 
     fun login(email: String, password: String) {
 
@@ -140,8 +128,29 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
     }
 
     // updates the current user live data
-    private fun currentUser(): FirebaseUser? {
-        return runBlocking { authRepository.currentUser() }
+    private fun updateCurrentUser() {
+        runBlocking(Dispatchers.IO) {
+            val firebaseUser = authRepository.currentUser()
+
+            firebaseUser?.let {
+                // This task returns a max of 1 doc
+                val userEmail = it.email!!
+                val userDocTask = authRepository.getFromFirestore(userEmail)
+                try {
+                    val docs = Tasks.await(userDocTask).documents
+                    val userDoc = docs[0]
+                    Timber.d("Successfully got user doc with email: $userEmail")
+                    _user.value?.id = userDoc.id
+                    _user.value?.email = userDoc.data?.get("email") as String
+                    _user.value?.name = userDoc.data?.get("name") as String
+                } catch (e: Exception) {
+                    Timber.d("Failed to get user doc with email: $userEmail")
+                    Timber.d(e)
+                    _error.postValue(userDocTask.exception?.localizedMessage)
+                    cancel()
+                }
+            }
+        }
     }
 
 }
