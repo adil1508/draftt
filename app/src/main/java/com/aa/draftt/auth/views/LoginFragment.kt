@@ -67,36 +67,6 @@ class LoginFragment : Fragment() {
             binding.progressbar.visibility = View.GONE
         })
 
-
-//        viewModel.authResult.observe(viewLifecycleOwner, { authResult ->
-//            when (authResult.status) {
-//                true -> {
-//                    Timber.d("Successfully called Login API")
-//                }
-//                false -> {
-//                    Timber.d("Failed to call Login API")
-//                    Toast.makeText(
-//                        requireContext(),
-//                        authResult.error,
-//                        Toast.LENGTH_LONG
-//                    ).show()
-//                    binding.progressbar.visibility = View.GONE
-//                }
-//            }
-//        })
-//
-//        viewModel.firebaseUser.observe(viewLifecycleOwner, { user ->
-//            if (user != null) {
-//                Toast.makeText(
-//                    requireContext(),
-//                    "Logged in user with email: ${user.email}",
-//                    Toast.LENGTH_LONG
-//                ).show()
-//                writeUserToSharedPref(null)
-//            } else {
-//                writeUserToSharedPref(null)
-//            }
-//        })
     }
 
     private fun writeUserToSharedPref(user: UserModel?) {
