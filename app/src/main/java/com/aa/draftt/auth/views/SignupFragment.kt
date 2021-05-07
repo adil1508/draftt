@@ -1,7 +1,6 @@
 package com.aa.draftt.auth.views
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -14,13 +13,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.aa.draftt.R
 import com.aa.draftt.Utils
+import com.aa.draftt.models.UserModel
 import com.aa.draftt.auth.viewmodels.AuthViewModel
 import com.aa.draftt.databinding.FragmentSignupBinding
-import com.aa.draftt.views.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -42,51 +40,43 @@ class SignupFragment : Fragment() {
     }
 
     private fun setupLiveDataObservers() {
-        viewModel.authResult.observe(viewLifecycleOwner, { authResult ->
-            when (authResult.status) {
-                true -> {
-                    Timber.d("Successfully signed up!")
-                    binding.progressbar.visibility = View.GONE
 
-                    val intent = Intent(requireContext(), HomeActivity::class.java)
-                    // These flags clear all activities on the stack
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
-                    requireActivity().finish()
-                }
-                false -> {
-                    Timber.d("Could not sign up")
-                    Toast.makeText(
-                        requireContext(),
-                        authResult.error,
-                        Toast.LENGTH_LONG
-                    ).show()
-                    binding.progressbar.visibility = View.GONE
-                }
-            }
+        viewModel.navigateToAuthenticated.observe(viewLifecycleOwner, {
+            Timber.d("Successfully signed up! and about to navigate away")
+            binding.progressbar.visibility = View.GONE
+
+//            val intent = Intent(requireContext(), HomeActivity::class.java)
+//            // These flags clear all activities on the stack
+//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//            startActivity(intent)
+//            requireActivity().finish()
         })
 
-        viewModel.firebaseUser.observe(viewLifecycleOwner, { user ->
-            if (user != null) {
-                Toast.makeText(
-                    requireContext(),
-                    "Signed up user with email: ${user.email}",
-                    Toast.LENGTH_LONG
-                ).show()
-                writeUserEmailToSharedPref(user.email)
-            } else {
-                writeUserEmailToSharedPref(null)
-            }
+        viewModel.error.observe(viewLifecycleOwner, { error ->
+            Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
+            binding.progressbar.visibility = View.GONE
         })
+
+        viewModel.user.observe(viewLifecycleOwner, {user ->
+            Toast.makeText(
+                requireContext(),
+                "Signed up user with email: ${user.email}",
+                Toast.LENGTH_LONG
+            ).show()
+            writeUserToSharedPref(user)
+        })
+
     }
 
-    private fun writeUserEmailToSharedPref(email: String?) {
+    private fun writeUserToSharedPref(user: UserModel) {
         val sharedPref = activity?.getSharedPreferences(
             getString(R.string.SHARED_PREF_FILE_KEY),
             Context.MODE_PRIVATE
         ) ?: return
         with(sharedPref.edit()) {
-            putString(getString(R.string.SHARED_PREF_USER_EMAIL_KEY), email)
+            putString(getString(R.string.SHARED_PREF_USER_EMAIL_KEY), user.email)
+            putString("USER_NAME", user.name)
+            putString("USER_ID", user.id)
             apply()
         }
     }
@@ -100,6 +90,7 @@ class SignupFragment : Fragment() {
         binding.signupButton.setOnClickListener {
             binding.progressbar.visibility = View.VISIBLE
             viewModel.signup(
+                binding.nameInputLayout.editText?.text.toString(),
                 binding.emailInputLayout.editText?.text.toString(),
                 binding.passwordInputLayout.editText?.text.toString()
             )
