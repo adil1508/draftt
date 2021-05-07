@@ -1,6 +1,7 @@
 package com.aa.draftt.auth.views
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -19,6 +20,7 @@ import com.aa.draftt.Utils
 import com.aa.draftt.models.UserModel
 import com.aa.draftt.auth.viewmodels.AuthViewModel
 import com.aa.draftt.databinding.FragmentSignupBinding
+import com.aa.draftt.views.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -45,11 +47,11 @@ class SignupFragment : Fragment() {
             Timber.d("Successfully signed up! and about to navigate away")
             binding.progressbar.visibility = View.GONE
 
-//            val intent = Intent(requireContext(), HomeActivity::class.java)
-//            // These flags clear all activities on the stack
-//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//            startActivity(intent)
-//            requireActivity().finish()
+            val intent = Intent(requireContext(), HomeActivity::class.java)
+            // These flags clear all activities on the stack
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            requireActivity().finish()
         })
 
         viewModel.error.observe(viewLifecycleOwner, { error ->
