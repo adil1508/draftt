@@ -44,20 +44,21 @@ class SignupFragment : Fragment() {
     private fun setupLiveDataObservers() {
 
         viewModel.navigateToAuthenticated.observe(viewLifecycleOwner, { navigate ->
-            if (navigate) {
-                Timber.d("Successfully signed up! and about to navigate away")
-                binding.progressbar.visibility = View.GONE
+            when (navigate) {
+                true -> {
+                    Timber.d("Successfully signed up! and about to navigate away")
+                    binding.progressbar.visibility = View.GONE
 
-                // before we are ready to navigate, write user shizzle to sharefPref
-                writeUserToSharedPref(viewModel.user.value)
+                    // before we are ready to navigate, write user shizzle to sharefPref
+                    writeUserToSharedPref(viewModel.user.value)
 
-                val intent = Intent(requireContext(), HomeActivity::class.java)
-                // These flags clear all activities on the stack
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
-                requireActivity().finish()
+                    val intent = Intent(requireContext(), HomeActivity::class.java)
+                    // These flags clear all activities on the stack
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    requireActivity().finish()
+                }
             }
-
         })
 
         viewModel.error.observe(viewLifecycleOwner, { error ->
