@@ -43,15 +43,21 @@ class SignupFragment : Fragment() {
 
     private fun setupLiveDataObservers() {
 
-        viewModel.navigateToAuthenticated.observe(viewLifecycleOwner, {
-            Timber.d("Successfully signed up! and about to navigate away")
-            binding.progressbar.visibility = View.GONE
+        viewModel.navigateToAuthenticated.observe(viewLifecycleOwner, { navigate ->
+            if (navigate) {
+                Timber.d("Successfully signed up! and about to navigate away")
+                binding.progressbar.visibility = View.GONE
 
-            val intent = Intent(requireContext(), HomeActivity::class.java)
-            // These flags clear all activities on the stack
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-            requireActivity().finish()
+                // before we are ready to navigate, write user shizzle to sharefPref
+                writeUserToSharedPref(viewModel.user.value)
+
+                val intent = Intent(requireContext(), HomeActivity::class.java)
+                // These flags clear all activities on the stack
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                requireActivity().finish()
+            }
+
         })
 
         viewModel.error.observe(viewLifecycleOwner, { error ->
@@ -59,28 +65,23 @@ class SignupFragment : Fragment() {
             binding.progressbar.visibility = View.GONE
         })
 
-        viewModel.user.observe(viewLifecycleOwner, {user ->
-            Toast.makeText(
-                requireContext(),
-                "Signed up user with email: ${user.email}",
-                Toast.LENGTH_LONG
-            ).show()
-            writeUserToSharedPref(user)
-        })
-
     }
 
-    private fun writeUserToSharedPref(user: UserModel) {
-        val sharedPref = activity?.getSharedPreferences(
-            getString(R.string.SHARED_PREF_FILE_KEY),
-            Context.MODE_PRIVATE
-        ) ?: return
-        with(sharedPref.edit()) {
-            putString(getString(R.string.SHARED_PREF_USER_EMAIL_KEY), user.email)
-            putString("USER_NAME", user.name)
-            putString("USER_ID", user.id)
-            apply()
+    private fun writeUserToSharedPref(user: UserModel?) {
+
+        user?.let {
+            val sharedPref = activity?.getSharedPreferences(
+                getString(R.string.SHARED_PREF_FILE_KEY),
+                Context.MODE_PRIVATE
+            ) ?: return
+            with(sharedPref.edit()) {
+                putString(getString(R.string.SHARED_PREF_USER_EMAIL_KEY), user.email)
+                putString("USER_NAME", user.name)
+                putString("USER_Id", user.id)
+                apply()
+            }
         }
+
     }
 
     private fun setupListeners() {
