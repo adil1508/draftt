@@ -76,8 +76,8 @@ class SignupFragment : Fragment() {
             ) ?: return
             with(sharedPref.edit()) {
                 putString(getString(R.string.SHARED_PREF_USER_EMAIL_KEY), user.email)
-                putString("USER_NAME", user.name)
-                putString("USER_Id", user.id)
+                putString(getString(R.string.SHARED_PREF_USER_NAME_KEY), user.name)
+                putString(getString(R.string.SHARED_PREF_USER_ID_KEY), user.id)
                 apply()
             }
         }

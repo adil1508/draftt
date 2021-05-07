@@ -42,8 +42,8 @@ class HomeFragment @Inject constructor(): Fragment() {
         ) ?: null
 
         val loggedUser = sharedPref?.getString(getString(R.string.SHARED_PREF_USER_EMAIL_KEY), "Could not get user email from shared pref")
-        val userName = sharedPref?.getString("USER_NAME", "Could not get user name from shared pref")
-        val userID = sharedPref?.getString("USER_Id", "Could not get user id from shared pref")
+        val userName = sharedPref?.getString(getString(R.string.SHARED_PREF_USER_NAME_KEY), "Could not get user name from shared pref")
+        val userID = sharedPref?.getString(getString(R.string.SHARED_PREF_USER_ID_KEY), "Could not get user id from shared pref")
         Toast.makeText(requireContext(), "$loggedUser, $userName, $userID", Toast.LENGTH_SHORT).show()
 
         setupListeners()

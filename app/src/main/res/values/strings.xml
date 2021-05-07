@@ -39,4 +39,6 @@
     <string name="team_name_button">Let\'s go!</string>
     <string name="SHARED_PREF_USER_EMAIL_KEY">USER_EMAIL</string>
     <string name="SHARED_PREF_FILE_KEY">com.aa.draftt.PREFERENCE_FILE_KEY</string>
+    <string name="SHARED_PREF_USER_NAME_KEY">USER_NAME</string>
+    <string name="SHARED_PREF_USER_ID_KEY">USER_Id</string>
 </resources>
