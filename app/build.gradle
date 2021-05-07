@@ -52,6 +52,11 @@ android {
 
 dependencies {
 
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.4.1'
+
+
     // Room stuff
     implementation "androidx.room:room-runtime:2.3.0"
     kapt "androidx.room:room-compiler:2.3.0"
@@ -107,6 +112,5 @@ dependencies {
 
     // Logging library
     implementation 'com.jakewharton.timber:timber:4.7.1'
-
 
 }
