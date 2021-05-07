@@ -4,6 +4,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.QuerySnapshot
 
 interface AuthRepository {
 
@@ -13,6 +14,9 @@ interface AuthRepository {
 
     // This will go into a FireStoreRepo
     suspend fun writeToFirestore(name: String, email: String): Task<DocumentReference>
+
+    // This will go into a FireStoreRepo
+    suspend fun getFromFirestore(email: String): Task<QuerySnapshot>
 
     suspend fun currentUser(): FirebaseUser?
 
