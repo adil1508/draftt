@@ -7,6 +7,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -43,6 +44,13 @@ class FirebaseAuthRepository @Inject constructor(
                 "email" to email
             )
             firestore.collection("users").add(userData)
+        }
+    }
+
+    override suspend fun getFromFirestore(email: String): Task<QuerySnapshot> {
+        return withContext(Dispatchers.IO) {
+            // get data from Firestore
+            firestore.collection("users").whereEqualTo("email", email).limit(1).get()
         }
     }
 
