@@ -21,7 +21,7 @@ class AuthActivity : AppCompatActivity() {
         // shared view model
         viewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
 
-        if (viewModel.firebaseUser.value != null) {
+        if (viewModel.user.value?.id != null) {
             // user logged in
             // Go on to Home Activity
             Timber.d("User logged in")
