@@ -9,6 +9,8 @@ import com.aa.draftt.room.DrafttDatabase
 import com.aa.draftt.room.dao.UserDao
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import dagger.Binds
 import dagger.Module
@@ -26,6 +28,12 @@ class DrafttProvidesModule {
     @Singleton
     fun providesFirebaseAuthService(): FirebaseAuth {
         return Firebase.auth
+    }
+
+    @Provides
+    @Singleton
+    fun providesFirebaseFirestore(): FirebaseFirestore {
+        return Firebase.firestore
     }
 
     @Provides
