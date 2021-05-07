@@ -123,11 +123,7 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
 
     // updates the current user live data
     private fun currentUser(): FirebaseUser? {
-
-        return runBlocking {
-            authRepository.currentUser()
-        }
-
+        return runBlocking { authRepository.currentUser() }
     }
 
 }
