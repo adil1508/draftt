@@ -19,6 +19,7 @@ import com.aa.draftt.R
 import com.aa.draftt.Utils
 import com.aa.draftt.auth.viewmodels.AuthViewModel
 import com.aa.draftt.databinding.FragmentLoginBinding
+import com.aa.draftt.models.UserModel
 import com.aa.draftt.views.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -41,11 +42,16 @@ class LoginFragment : Fragment() {
     }
 
     private fun setupLiveDataObservers() {
-        viewModel.authResult.observe(viewLifecycleOwner, { authResult ->
-            when (authResult.status) {
+
+        // only observe the navigate away to navigate away
+        viewModel.navigateToAuthenticated.observe(viewLifecycleOwner, { navigate ->
+            when (navigate) {
                 true -> {
-                    Timber.d("Successfully called Login API")
+                    Timber.d("Navigating to Authenticated activity")
                     binding.progressbar.visibility = View.GONE
+
+                    // before we are ready to navigate, write user shizzle to sharefPref
+                    writeUserToSharedPref(viewModel.user.value)
 
                     val intent = Intent(requireContext(), HomeActivity::class.java)
                     // These flags clear all activities on the stack
@@ -53,40 +59,58 @@ class LoginFragment : Fragment() {
                     startActivity(intent)
                     requireActivity().finish()
                 }
-                false -> {
-                    Timber.d("Failed to call Login API")
-                    Toast.makeText(
-                        requireContext(),
-                        authResult.error,
-                        Toast.LENGTH_LONG
-                    ).show()
-                    binding.progressbar.visibility = View.GONE
-                }
             }
         })
 
-        viewModel.firebaseUser.observe(viewLifecycleOwner, { user ->
-            if (user != null) {
-                Toast.makeText(
-                    requireContext(),
-                    "Logged in user with email: ${user.email}",
-                    Toast.LENGTH_LONG
-                ).show()
-                writeUserEmailToSharedPref(user.email)
-            } else {
-                writeUserEmailToSharedPref(null)
-            }
+        viewModel.error.observe(viewLifecycleOwner, { error ->
+            Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
+            binding.progressbar.visibility = View.GONE
         })
+
+
+//        viewModel.authResult.observe(viewLifecycleOwner, { authResult ->
+//            when (authResult.status) {
+//                true -> {
+//                    Timber.d("Successfully called Login API")
+//                }
+//                false -> {
+//                    Timber.d("Failed to call Login API")
+//                    Toast.makeText(
+//                        requireContext(),
+//                        authResult.error,
+//                        Toast.LENGTH_LONG
+//                    ).show()
+//                    binding.progressbar.visibility = View.GONE
+//                }
+//            }
+//        })
+//
+//        viewModel.firebaseUser.observe(viewLifecycleOwner, { user ->
+//            if (user != null) {
+//                Toast.makeText(
+//                    requireContext(),
+//                    "Logged in user with email: ${user.email}",
+//                    Toast.LENGTH_LONG
+//                ).show()
+//                writeUserToSharedPref(null)
+//            } else {
+//                writeUserToSharedPref(null)
+//            }
+//        })
     }
 
-    private fun writeUserEmailToSharedPref(email: String?) {
-        val sharedPref = activity?.getSharedPreferences(
-            getString(R.string.SHARED_PREF_FILE_KEY),
-            Context.MODE_PRIVATE
-        ) ?: return
-        with(sharedPref.edit()) {
-            putString(getString(R.string.SHARED_PREF_USER_EMAIL_KEY), email)
-            apply()
+    private fun writeUserToSharedPref(user: UserModel?) {
+        user?.let {
+            val sharedPref = activity?.getSharedPreferences(
+                getString(R.string.SHARED_PREF_FILE_KEY),
+                Context.MODE_PRIVATE
+            ) ?: return
+            with(sharedPref.edit()) {
+                putString(getString(R.string.SHARED_PREF_USER_EMAIL_KEY), user.email)
+                putString(getString(R.string.SHARED_PREF_USER_NAME_KEY), user.name)
+                putString(getString(R.string.SHARED_PREF_USER_ID_KEY), user.id)
+                apply()
+            }
         }
     }
 
