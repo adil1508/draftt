@@ -17,9 +17,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.aa.draftt.R
 import com.aa.draftt.Utils
-import com.aa.draftt.models.UserModel
 import com.aa.draftt.auth.viewmodels.AuthViewModel
 import com.aa.draftt.databinding.FragmentSignupBinding
+import com.aa.draftt.models.UserModel
 import com.aa.draftt.views.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -65,7 +65,7 @@ class SignupFragment : Fragment() {
 
     }
 
-    private fun startHomeActivity(){
+    private fun startHomeActivity() {
         val intent = Intent(requireContext(), HomeActivity::class.java)
         // These flags clear all activities on the stack
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
