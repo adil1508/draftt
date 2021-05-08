@@ -41,35 +41,29 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
 
     fun login(email: String, password: String) {
 
-        /*
-        * Similar to Signup, first we attempt a login, then we get some info from fireStore
-        * */
-
         viewModelScope.launch(Dispatchers.IO) {
+            // Login using FirebaseAuth
             val loginTask = authRepository.login(email, password)
             try {
                 Tasks.await(loginTask)
                 Timber.d("Successfully logged in user with email: $email")
             } catch (e: Exception) {
+                // Something went wrong logging user in
                 Timber.d("Failed to log in user with email: $email")
                 _error.postValue(loginTask.exception?.localizedMessage)
                 cancel()
             }
 
-            // At this point, we are successfully logged in,
-            // we need to get the Firestore record associated with this email
-            // NOTE: We are guaranteed only one record in Firestore cus otherwise,
-            // this user would've failed signup
-
-            // This task returns a max of 1 doc
+            // Get user info for logged in user
             val userDocTask = authRepository.getFromFirestore(email)
             try {
-                val userDoc = Tasks.await(userDocTask).documents[0]
+                val userDoc = Tasks.await(userDocTask).documents[0] // this task returns a max of 1 doc
                 Timber.d("Successfully got user doc with email: $email")
                 _user.value?.id = userDoc.id
                 _user.value?.email = userDoc.data?.get("email") as String
                 _user.value?.name = userDoc.data?.get("name") as String
             } catch (e: Exception) {
+                // Something went wrong getting user info doc
                 Timber.d("Failed to get user doc with email: $email")
                 _error.postValue(userDocTask.exception?.localizedMessage)
                 cancel()
@@ -80,29 +74,26 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
             _navigateToAuthenticated.postValue(true)
 
         }
+
     }
 
     fun signup(name: String, email: String, password: String) {
 
-        // We need to do 2 things here
-        // firstly, make a call to FirebaseAuth using email and password
-        // secondly, make a call to FirebaseFirestore using email and name to create a record
-
         viewModelScope.launch(Dispatchers.IO) {
-            // Try to sign up using FirebaseAuth
+
+            // Sign up using FirebaseAuth
             val signupTask = authRepository.signup(email = email, password = password)
             try {
                 Tasks.await(signupTask)
                 Timber.d("Successfully signed up user with email: $email")
             } catch (e: Exception) {
+                // something went wrong signing up user
                 Timber.d("Something went wrong signing up user with email: $email")
                 _error.postValue(signupTask.exception?.localizedMessage)
                 cancel()
             }
 
-            // At this point, user is signed up from FirebaseAuth
-            // We need to store user info in FirebaseFirestore
-            // Try to sign up using FirebaseAuth
+            // Store user info in Firestore
             val fireStoreWriteTask = authRepository.writeToFirestore(name = name, email = email)
             try {
                 // This stuff should really be in a firestore repository
@@ -114,23 +105,24 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
                 _user.value?.name = docData.data?.get("name") as String?
                 _user.value?.email = docData.data?.get("email") as String?
             } catch (e: FirebaseFirestoreException) {
-                // something went wrong writing user
+                // something went wrong writing user info
                 Timber.d("Failed to write user with name: $name, email: $email")
                 _error.postValue(fireStoreWriteTask.exception?.localizedMessage)
                 cancel()
             }
 
-            // At this point we've setup our _user variable
+            // At this point we've signed up and stored user info
             // and we can navigate away :)
             _navigateToAuthenticated.postValue(true)
 
         }
+
     }
 
     // updates the current user live data
     private fun updateCurrentUser() {
         runBlocking(Dispatchers.IO) {
-            val firebaseUser = authRepository.currentUser()
+            val firebaseUser = authRepository.getLoggedInUser()
 
             firebaseUser?.let {
                 // This task returns a max of 1 doc
