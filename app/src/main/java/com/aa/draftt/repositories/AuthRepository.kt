@@ -12,12 +12,6 @@ interface AuthRepository {
 
     suspend fun signup(email: String, password: String): Task<AuthResult>
 
-    // This will go into a FireStoreRepo
-    suspend fun writeToFirestore(name: String, email: String): Task<DocumentReference>
-
-    // This will go into a FireStoreRepo
-    suspend fun getFromFirestore(email: String): Task<QuerySnapshot>
-
     suspend fun getLoggedInUser(): FirebaseUser?
 
     // TODO: Add logging when implement this properly
