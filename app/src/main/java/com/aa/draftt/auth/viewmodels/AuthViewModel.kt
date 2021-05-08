@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aa.draftt.models.UserModel
 import com.aa.draftt.repositories.AuthRepository
+import com.aa.draftt.repositories.UserRepository
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.FirebaseFirestoreException
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +18,10 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class AuthViewModel @Inject constructor(private val authRepository: AuthRepository) :
+class AuthViewModel @Inject constructor(
+    private val authRepository: AuthRepository,
+    private val userRepository: UserRepository
+) :
     ViewModel() {
 
     // Tell the observing fragment to navigate away
@@ -55,7 +59,7 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
             }
 
             // Get user info for logged in user
-            val userDocTask = authRepository.getFromFirestore(email)
+            val userDocTask = userRepository.getUserByNameFirestore(email)
             try {
                 val userDoc =
                     Tasks.await(userDocTask).documents[0] // this task returns a max of 1 doc
@@ -95,7 +99,7 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
             }
 
             // Store user info in Firestore
-            val fireStoreWriteTask = authRepository.writeToFirestore(name = name, email = email)
+            val fireStoreWriteTask = userRepository.writeUserToFirestore(name = name, email = email)
             try {
                 // This stuff should really be in a firestore repository
                 val doc = Tasks.await(fireStoreWriteTask)
@@ -128,7 +132,7 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
             firebaseUser?.let {
                 // This task returns a max of 1 doc
                 val userEmail = it.email!!
-                val userDocTask = authRepository.getFromFirestore(userEmail)
+                val userDocTask = userRepository.getUserByNameFirestore(userEmail)
                 try {
                     val docs = Tasks.await(userDocTask).documents
                     val userDoc = docs[0]

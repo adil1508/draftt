@@ -3,7 +3,9 @@ package com.aa.draftt.hilt
 import android.content.Context
 import androidx.room.Room
 import com.aa.draftt.repositories.AuthRepository
+import com.aa.draftt.repositories.UserRepository
 import com.aa.draftt.repositories.implementations.FirebaseAuthRepository
+import com.aa.draftt.repositories.implementations.FirestoreUserRepository
 import com.aa.draftt.room.DatabaseMigrations
 import com.aa.draftt.room.DrafttDatabase
 import com.aa.draftt.room.dao.UserDao
@@ -65,5 +67,10 @@ abstract class DrafttBindingsModule {
     abstract fun bindAuthRepository(
         firebaseAuthRepository: FirebaseAuthRepository
     ): AuthRepository
+
+    @Binds
+    abstract fun bindUserRepository(
+        firestoreUserRepository: FirestoreUserRepository
+    ): UserRepository
 
 }
