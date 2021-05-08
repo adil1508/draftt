@@ -55,9 +55,7 @@ class FirebaseAuthRepository @Inject constructor(
     }
 
     override suspend fun getLoggedInUser(): FirebaseUser? {
-        // when we're asked for the current user, we should try to get
-        // firebase Auth user
-        // If that is not null, go to Firestore and grab the user info
+        // Get currentUser from Firebase to check if user is logged in or not
         return withContext(Dispatchers.IO){
             firebaseAuth.currentUser
         }
