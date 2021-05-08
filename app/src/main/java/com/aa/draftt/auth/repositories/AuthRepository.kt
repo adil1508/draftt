@@ -18,7 +18,7 @@ interface AuthRepository {
     // This will go into a FireStoreRepo
     suspend fun getFromFirestore(email: String): Task<QuerySnapshot>
 
-    suspend fun currentUser(): FirebaseUser?
+    suspend fun getLoggedInUser(): FirebaseUser?
 
     // TODO: Add logging when implement this properly
     suspend fun signout()
