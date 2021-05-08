@@ -1,4 +1,4 @@
-package com.aa.draftt.auth.repositories
+package com.aa.draftt.repositories
 
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
