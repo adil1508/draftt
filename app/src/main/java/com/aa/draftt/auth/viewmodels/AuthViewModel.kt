@@ -59,7 +59,7 @@ class AuthViewModel @Inject constructor(
             }
 
             // Get user info for logged in user
-            val userDocTask = userRepository.getUserByNameFirestore(email)
+            val userDocTask = userRepository.getUserByEmail(email)
             try {
                 val userDoc =
                     Tasks.await(userDocTask).documents[0] // this task returns a max of 1 doc
@@ -132,7 +132,7 @@ class AuthViewModel @Inject constructor(
             firebaseUser?.let {
                 // This task returns a max of 1 doc
                 val userEmail = it.email!!
-                val userDocTask = userRepository.getUserByNameFirestore(userEmail)
+                val userDocTask = userRepository.getUserByEmail(userEmail)
                 try {
                     val docs = Tasks.await(userDocTask).documents
                     val userDoc = docs[0]

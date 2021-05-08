@@ -10,5 +10,5 @@ interface UserRepository {
     suspend fun writeUserToFirestore(name: String, email: String): Task<DocumentReference>
 
     // This will go into a FireStoreRepo
-    suspend fun getUserByNameFirestore(email: String): Task<QuerySnapshot>
+    suspend fun getUserByEmail(email: String): Task<QuerySnapshot>
 }
