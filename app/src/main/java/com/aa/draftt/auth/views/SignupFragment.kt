@@ -52,11 +52,8 @@ class SignupFragment : Fragment() {
                     // before we are ready to navigate, write user shizzle to sharefPref
                     writeUserToSharedPref(viewModel.user.value)
 
-                    val intent = Intent(requireContext(), HomeActivity::class.java)
-                    // These flags clear all activities on the stack
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
-                    requireActivity().finish()
+                    startHomeActivity()
+
                 }
             }
         })
@@ -66,6 +63,14 @@ class SignupFragment : Fragment() {
             binding.progressbar.visibility = View.GONE
         })
 
+    }
+
+    private fun startHomeActivity(){
+        val intent = Intent(requireContext(), HomeActivity::class.java)
+        // These flags clear all activities on the stack
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        requireActivity().finish()
     }
 
     private fun writeUserToSharedPref(user: UserModel?) {
