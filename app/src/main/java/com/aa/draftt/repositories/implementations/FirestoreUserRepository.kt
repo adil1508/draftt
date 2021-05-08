@@ -25,7 +25,7 @@ class FirestoreUserRepository @Inject constructor(
         }
     }
 
-    override suspend fun getUserByNameFirestore(email: String): Task<QuerySnapshot> {
+    override suspend fun getUserByEmail(email: String): Task<QuerySnapshot> {
         return withContext(Dispatchers.IO) {
             // get data from Firestore
             firestore.collection("users").whereEqualTo("email", email).limit(1).get()
