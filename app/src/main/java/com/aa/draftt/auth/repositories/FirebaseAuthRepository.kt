@@ -1,7 +1,7 @@
 package com.aa.draftt.auth.repositories
 
+import com.aa.draftt.repositories.AuthRepository
 import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -37,7 +37,7 @@ class FirebaseAuthRepository @Inject constructor(
 
     override suspend fun writeToFirestore(name: String, email: String): Task<DocumentReference> {
 
-        return withContext(Dispatchers.IO){
+        return withContext(Dispatchers.IO) {
             // write to firestore
             val userData = hashMapOf(
                 "name" to name,
@@ -56,7 +56,7 @@ class FirebaseAuthRepository @Inject constructor(
 
     override suspend fun getLoggedInUser(): FirebaseUser? {
         // Get currentUser from Firebase to check if user is logged in or not
-        return withContext(Dispatchers.IO){
+        return withContext(Dispatchers.IO) {
             firebaseAuth.currentUser
         }
     }

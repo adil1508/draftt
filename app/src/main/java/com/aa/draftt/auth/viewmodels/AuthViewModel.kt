@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aa.draftt.auth.repositories.AuthRepository
 import com.aa.draftt.models.UserModel
+import com.aa.draftt.repositories.AuthRepository
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.FirebaseFirestoreException
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -57,7 +57,8 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
             // Get user info for logged in user
             val userDocTask = authRepository.getFromFirestore(email)
             try {
-                val userDoc = Tasks.await(userDocTask).documents[0] // this task returns a max of 1 doc
+                val userDoc =
+                    Tasks.await(userDocTask).documents[0] // this task returns a max of 1 doc
                 Timber.d("Successfully got user doc with email: $email")
                 _user.value?.id = userDoc.id
                 _user.value?.email = userDoc.data?.get("email") as String
