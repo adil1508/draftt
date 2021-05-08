@@ -1,6 +1,7 @@
-package com.aa.draftt.auth.repositories
+package com.aa.draftt.repositories.implementations
 
 import com.aa.draftt.repositories.AuthRepository
+import com.aa.draftt.repositories.UserRepository
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -15,7 +16,7 @@ import javax.inject.Inject
 class FirebaseAuthRepository @Inject constructor(
     private val firebaseAuth: FirebaseAuth,
     private val firestore: FirebaseFirestore
-) : AuthRepository {
+) : AuthRepository, UserRepository {
 
     override suspend fun login(
         email: String,
@@ -35,7 +36,7 @@ class FirebaseAuthRepository @Inject constructor(
         }
     }
 
-    override suspend fun writeToFirestore(name: String, email: String): Task<DocumentReference> {
+    override suspend fun writeUserToFirestore(name: String, email: String): Task<DocumentReference> {
 
         return withContext(Dispatchers.IO) {
             // write to firestore
@@ -47,7 +48,7 @@ class FirebaseAuthRepository @Inject constructor(
         }
     }
 
-    override suspend fun getFromFirestore(email: String): Task<QuerySnapshot> {
+    override suspend fun getUserByNameFirestore(email: String): Task<QuerySnapshot> {
         return withContext(Dispatchers.IO) {
             // get data from Firestore
             firestore.collection("users").whereEqualTo("email", email).limit(1).get()

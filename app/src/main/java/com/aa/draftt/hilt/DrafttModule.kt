@@ -3,7 +3,7 @@ package com.aa.draftt.hilt
 import android.content.Context
 import androidx.room.Room
 import com.aa.draftt.repositories.AuthRepository
-import com.aa.draftt.auth.repositories.FirebaseAuthRepository
+import com.aa.draftt.repositories.implementations.FirebaseAuthRepository
 import com.aa.draftt.room.DatabaseMigrations
 import com.aa.draftt.room.DrafttDatabase
 import com.aa.draftt.room.dao.UserDao
