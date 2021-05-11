@@ -146,15 +146,18 @@ class LoginFragment : Fragment() {
             when (key) {
                 "email" -> {
                     if (value.isEmpty() && !validationErrors.containsKey(key)) {
-                        validationErrors[key] = "Please enter an email address"
+                        validationErrors[key] =
+                            getString(R.string.login_email_validation_error_empty)
                     }
                     if (!Utils.isValidEmail(value) && !validationErrors.containsKey(key)) {
-                        validationErrors[key] = "Please enter a valid email address"
+                        validationErrors[key] =
+                            getString(R.string.login_email_validation_error_invalid)
                     }
                 }
                 "password" -> {
                     if (value.isEmpty() && !validationErrors.containsKey(key)) {
-                        validationErrors[key] = "Please enter your password"
+                        validationErrors[key] =
+                            getString(R.string.login_password_validation_error_empty)
                     }
                 }
             }
