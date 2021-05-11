@@ -98,13 +98,103 @@ class SignupFragment : Fragment() {
     private fun setupButtonListener() {
         binding.signupButton.setOnClickListener {
             binding.progressbar.visibility = View.VISIBLE
-            viewModel.signup(
-                binding.nameInputLayout.editText?.text.toString(),
-                binding.emailInputLayout.editText?.text.toString(),
-                binding.passwordInputLayout.editText?.text.toString()
-            )
+
+            validateAndSignup()
             Utils.hideKeyboard(requireContext(), binding.root)
         }
+    }
+
+    private fun validateAndSignup() {
+
+        val nameText = binding.nameInputLayout.editText?.text.toString()
+        val emailText = binding.emailInputLayout.editText?.text.toString()
+        val passwordText = binding.passwordInputLayout.editText?.text.toString()
+        val confirmPasswordText = binding.confirmPasswordInputLayout.editText?.text.toString()
+
+        val inputs = HashMap<String, String>()
+        inputs["name"] = nameText
+        inputs["email"] = emailText
+        inputs["password"] = passwordText
+        inputs["confirm_password"] = confirmPasswordText
+
+        val validationErrors = getValidationErrors(inputs)
+
+        // clear all errors
+        binding.nameInputLayout.error = null
+        binding.emailInputLayout.error = null
+        binding.passwordInputLayout.error = null
+        binding.confirmPasswordInputLayout.error = null
+
+        if (validationErrors.isEmpty()) {
+            // if no errors, try to login
+            viewModel.signup(nameText, emailText, passwordText)
+        } else {
+            // set the errors
+            validationErrors.forEach { (key, value) ->
+                when (key) {
+                    "name" -> {
+                        binding.nameInputLayout.error = value
+                    }
+                    "email" -> {
+                        binding.emailInputLayout.error = value
+                    }
+                    "password" -> {
+                        binding.passwordInputLayout.error = value
+                    }
+                    "confirm_password" -> {
+                        binding.confirmPasswordInputLayout.error = value
+                    }
+                }
+            }
+            // need to turn off the spinner
+            binding.progressbar.visibility = View.GONE
+        }
+        Utils.hideKeyboard(requireContext(), binding.root)
+
+    }
+
+    private fun getValidationErrors(inputs: HashMap<String, String>): HashMap<String, String> {
+
+        val validationErrors = HashMap<String, String>()
+
+        inputs.forEach { (key, value) ->
+            when (key) {
+                "name" -> {
+                    if (value.isEmpty() && !validationErrors.containsKey(key)) {
+                        validationErrors[key] = "Name can't be empty"
+                    }
+                }
+                "email" -> {
+                    if (value.isEmpty() && !validationErrors.containsKey(key)) {
+                        validationErrors[key] = "Email can't be empty"
+                    }
+                    if (!Utils.isValidEmail(value) && !validationErrors.containsKey(key)) {
+                        validationErrors[key] = "Entered email isn't a valid email address"
+                    }
+                }
+                "password" -> {
+                    if (value.isEmpty() && !validationErrors.containsKey(key)) {
+                        validationErrors[key] = "Password can't be empty"
+                    }
+                    // check for length of password
+                    if (value.length < 8 && !validationErrors.containsKey(key)) {
+                        validationErrors[key] = "Password can't be less than 8 characters"
+                    }
+                }
+                "confirm_password" -> {
+                    // just check if it matches inputs["password"]
+                    if (value.isEmpty() && !validationErrors.containsKey(key)) {
+                        validationErrors[key] = "Please re-enter your password"
+                    }
+                    if (value != inputs["password"] && !validationErrors.containsKey(key)) {
+                        validationErrors[key] = "Passwords do not match!"
+                    }
+                }
+            }
+        }
+
+        return validationErrors
+
     }
 
     private fun setupClickableSpans() {
