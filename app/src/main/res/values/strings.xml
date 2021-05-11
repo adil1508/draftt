@@ -41,4 +41,11 @@
     <string name="SHARED_PREF_FILE_KEY">com.aa.draftt.PREFERENCE_FILE_KEY</string>
     <string name="SHARED_PREF_USER_NAME_KEY">USER_NAME</string>
     <string name="SHARED_PREF_USER_ID_KEY">USER_Id</string>
+    <string name="signup_name_validation_error_empty">Name can\'t be empty</string>
+    <string name="signup_email_validation_error_empty">Email can\'t be empty</string>
+    <string name="signup_email_validation_error_invalid">Entered email isn\'t a valid email address</string>
+    <string name="signup_password_validation_error_empty">Password can\'t be empty</string>
+    <string name="signup_password_validation_error_length">Password can\'t be less than 8 characters</string>
+    <string name="signup_confirmpassword_validation_error_empty">Please re-enter your password</string>
+    <string name="signup_confirmpassword_validation_error_mismatch">Passwords do not match!</string>
 </resources>

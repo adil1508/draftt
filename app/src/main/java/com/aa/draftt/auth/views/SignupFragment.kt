@@ -161,33 +161,40 @@ class SignupFragment : Fragment() {
             when (key) {
                 "name" -> {
                     if (value.isEmpty() && !validationErrors.containsKey(key)) {
-                        validationErrors[key] = "Name can't be empty"
+                        validationErrors[key] =
+                            getString(R.string.signup_name_validation_error_empty)
                     }
                 }
                 "email" -> {
                     if (value.isEmpty() && !validationErrors.containsKey(key)) {
-                        validationErrors[key] = "Email can't be empty"
+                        validationErrors[key] =
+                            getString(R.string.signup_email_validation_error_empty)
                     }
                     if (!Utils.isValidEmail(value) && !validationErrors.containsKey(key)) {
-                        validationErrors[key] = "Entered email isn't a valid email address"
+                        validationErrors[key] =
+                            getString(R.string.signup_email_validation_error_invalid)
                     }
                 }
                 "password" -> {
                     if (value.isEmpty() && !validationErrors.containsKey(key)) {
-                        validationErrors[key] = "Password can't be empty"
+                        validationErrors[key] =
+                            getString(R.string.signup_password_validation_error_empty)
                     }
                     // check for length of password
                     if (value.length < 8 && !validationErrors.containsKey(key)) {
-                        validationErrors[key] = "Password can't be less than 8 characters"
+                        validationErrors[key] =
+                            getString(R.string.signup_password_validation_error_length)
                     }
                 }
                 "confirm_password" -> {
                     // just check if it matches inputs["password"]
                     if (value.isEmpty() && !validationErrors.containsKey(key)) {
-                        validationErrors[key] = "Please re-enter your password"
+                        validationErrors[key] =
+                            getString(R.string.signup_confirmpassword_validation_error_empty)
                     }
                     if (value != inputs["password"] && !validationErrors.containsKey(key)) {
-                        validationErrors[key] = "Passwords do not match!"
+                        validationErrors[key] =
+                            getString(R.string.signup_confirmpassword_validation_error_mismatch)
                     }
                 }
             }
