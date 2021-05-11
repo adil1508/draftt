@@ -48,4 +48,7 @@
     <string name="signup_password_validation_error_length">Password can\'t be less than 8 characters</string>
     <string name="signup_confirmpassword_validation_error_empty">Please re-enter your password</string>
     <string name="signup_confirmpassword_validation_error_mismatch">Passwords do not match!</string>
+    <string name="login_email_validation_error_empty">Please enter an email address</string>
+    <string name="login_email_validation_error_invalid">Please enter a valid email address</string>
+    <string name="login_password_validation_error_empty">Please enter your password</string>
 </resources>
