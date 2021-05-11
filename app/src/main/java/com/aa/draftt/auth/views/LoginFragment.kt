@@ -102,12 +102,72 @@ class LoginFragment : Fragment() {
     private fun setupButtons() {
         binding.loginButton.setOnClickListener {
             binding.progressbar.visibility = View.VISIBLE
-            viewModel.login(
-                binding.emailInputLayout.editText?.text.toString(),
-                binding.passwordInputLayout.editText?.text.toString()
-            )
-            Utils.hideKeyboard(requireContext(), binding.root)
+
+            // validate and login
+            validateAndLogin()
         }
+    }
+
+    private fun validateAndLogin() {
+
+        val emailText = binding.emailInputLayout.editText?.text.toString()
+        val passwordText = binding.passwordInputLayout.editText?.text.toString()
+
+        val inputs = HashMap<String, String>()
+        inputs["email"] = emailText
+        inputs["password"] = passwordText
+
+        val validationErrors = getValidationErrors(inputs)
+
+        // clear all errors
+        binding.passwordInputLayout.error = null
+        binding.emailInputLayout.error = null
+
+        if (validationErrors.isEmpty()) {
+            // if no errors, try to login
+            viewModel.login(email = emailText, password = passwordText)
+        } else {
+            // set the errors
+            validationErrors.forEach { (key, value) ->
+                when (key) {
+                    "email" -> {
+                        binding.emailInputLayout.error = value
+                    }
+                    "password" -> {
+                        binding.passwordInputLayout.error = value
+                    }
+                }
+            }
+            // need to turn off the spinner
+            binding.progressbar.visibility = View.GONE
+        }
+        Utils.hideKeyboard(requireContext(), binding.root)
+    }
+
+    private fun getValidationErrors(inputs: HashMap<String, String>): HashMap<String, String> {
+
+        val validationErrors = HashMap<String, String>()
+
+        inputs.forEach { (key, value) ->
+            when (key) {
+                "email" -> {
+                    if (value.isEmpty() && !validationErrors.containsKey(key)) {
+                        validationErrors[key] = "Please enter an email address"
+                    }
+                    if (!Utils.isValidEmail(value) && !validationErrors.containsKey(key)) {
+                        validationErrors[key] = "Please enter a valid email address"
+                    }
+                }
+                "password" -> {
+                    if (value.isEmpty() && !validationErrors.containsKey(key)) {
+                        validationErrors[key] = "Please enter your password"
+                    }
+                }
+            }
+        }
+
+        return validationErrors
+
     }
 
     private fun setupClickableSpans() {
