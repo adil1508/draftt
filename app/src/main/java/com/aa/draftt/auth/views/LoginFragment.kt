@@ -145,20 +145,20 @@ class LoginFragment : Fragment() {
         inputs.forEach { (key, value) ->
             when (key) {
                 "email" -> {
-                    if (value.isEmpty() && !validationErrors.containsKey(key)) {
+                    if (value.isEmpty() && !validationErrors.containsKey(key))
                         validationErrors[key] =
                             getString(R.string.login_email_validation_error_empty)
-                    }
-                    if (!Utils.isValidEmail(value) && !validationErrors.containsKey(key)) {
+
+                    if (!Utils.isValidEmail(value) && !validationErrors.containsKey(key))
                         validationErrors[key] =
                             getString(R.string.login_email_validation_error_invalid)
-                    }
+
                 }
                 "password" -> {
-                    if (value.isEmpty() && !validationErrors.containsKey(key)) {
+                    if (value.isEmpty() && !validationErrors.containsKey(key))
                         validationErrors[key] =
                             getString(R.string.login_password_validation_error_empty)
-                    }
+
                 }
             }
         }

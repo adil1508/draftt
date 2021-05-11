@@ -166,36 +166,36 @@ class SignupFragment : Fragment() {
                     }
                 }
                 "email" -> {
-                    if (value.isEmpty() && !validationErrors.containsKey(key)) {
+                    if (value.isEmpty() && !validationErrors.containsKey(key))
                         validationErrors[key] =
                             getString(R.string.signup_email_validation_error_empty)
-                    }
-                    if (!Utils.isValidEmail(value) && !validationErrors.containsKey(key)) {
+
+                    if (!Utils.isValidEmail(value) && !validationErrors.containsKey(key))
                         validationErrors[key] =
                             getString(R.string.signup_email_validation_error_invalid)
-                    }
+
                 }
                 "password" -> {
-                    if (value.isEmpty() && !validationErrors.containsKey(key)) {
+                    if (value.isEmpty() && !validationErrors.containsKey(key))
                         validationErrors[key] =
                             getString(R.string.signup_password_validation_error_empty)
-                    }
+
                     // check for length of password
-                    if (value.length < 8 && !validationErrors.containsKey(key)) {
+                    if (value.length < 8 && !validationErrors.containsKey(key))
                         validationErrors[key] =
                             getString(R.string.signup_password_validation_error_length)
-                    }
+
                 }
                 "confirm_password" -> {
                     // just check if it matches inputs["password"]
-                    if (value.isEmpty() && !validationErrors.containsKey(key)) {
+                    if (value.isEmpty() && !validationErrors.containsKey(key))
                         validationErrors[key] =
                             getString(R.string.signup_confirmpassword_validation_error_empty)
-                    }
-                    if (value != inputs["password"] && !validationErrors.containsKey(key)) {
+
+                    if (value != inputs["password"] && !validationErrors.containsKey(key))
                         validationErrors[key] =
                             getString(R.string.signup_confirmpassword_validation_error_mismatch)
-                    }
+
                 }
             }
         }
