@@ -140,11 +140,10 @@
 
             <Button
                 android:id="@+id/signup_button"
-                style="@style/signup_signup_button"
+                style="@style/Style.Widget.Draftt.Button.Signup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/signup_signup_buttom_text"
-                app:cornerRadius="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

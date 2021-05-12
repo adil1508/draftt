@@ -2,9 +2,9 @@
     <!-- Base application theme. -->
     <style name="Theme.Draftt" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#FB9C4C</item>
-        <item name="colorPrimaryVariant">@color/orange</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">@color/orange_500</item>
+        <item name="colorPrimaryVariant">@color/orange_300</item>
+        <item name="colorOnPrimary">@color/greyblue_100</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
@@ -17,5 +17,7 @@
         <item name="fontFamily">@font/open_sans</item>
         <!-- Setting global input style -->
         <item name="textInputStyle">@style/Style.Widget.Draftt.InputLayout</item>
+        <!-- Setting global button style -->
+        <item name="materialButtonStyle">@style/Style.Widget.Draftt.Button</item>
     </style>
 </resources>

@@ -60,45 +60,18 @@
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="login_login_button" parent="Widget.MaterialComponents.Button">
-        <item name="android:backgroundTint">@color/orange_500</item>
-        <item name="android:layout_marginHorizontal">36dp</item>
+    <style name="Style.Widget.Draftt.Button" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/orange_500</item>
+        <item name="cornerRadius">5dp</item>
         <item name="android:paddingVertical">12dp</item>
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Button</item>
-        <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="signup_signup_button" parent="Widget.MaterialComponents.Button">
+    <style name="Style.Widget.Draftt.Button.AuthButton">
         <item name="android:layout_marginHorizontal">36dp</item>
+    </style>
+
+    <style name="Style.Widget.Draftt.Button.Signup" parent="Style.Widget.Draftt.Button.AuthButton">
         <item name="android:layout_marginTop">15dp</item>
-        <item name="android:backgroundTint">@color/orange_500</item>
-        <item name="android:paddingVertical">12dp</item>
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Button</item>
-        <item name="android:textColor">@color/white</item>
-    </style>
-
-    <style name="reset_password_button" parent="Widget.MaterialComponents.Button">
-        <item name="android:layout_marginHorizontal">36dp</item>
-        <item name="android:backgroundTint">@color/orange_500</item>
-        <item name="android:paddingVertical">12dp</item>
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Button</item>
-        <item name="android:textColor">@color/white</item>
-    </style>
-
-    <style name="verify_button" parent="Widget.MaterialComponents.Button">
-        <item name="android:layout_marginHorizontal">36dp</item>
-        <item name="android:backgroundTint">@color/orange_500</item>
-        <item name="android:paddingVertical">12dp</item>
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Button</item>
-        <item name="android:textColor">@color/white</item>
-    </style>
-
-    <style name="lets_go_button" parent="Widget.MaterialComponents.Button">
-        <item name="android:layout_marginHorizontal">36dp</item>
-        <item name="android:backgroundTint">@color/orange_500</item>
-        <item name="android:paddingVertical">12dp</item>
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Button</item>
-        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="login_signup">

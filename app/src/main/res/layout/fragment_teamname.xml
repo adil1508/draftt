@@ -55,11 +55,10 @@
 
         <Button
             android:id="@+id/lets_go_button"
-            style="@style/lets_go_button"
+            style="@style/Style.Widget.Draftt.Button.AuthButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/team_name_button"
-            app:cornerRadius="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
