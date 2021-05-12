@@ -15,5 +15,7 @@
         <item name="android:windowTranslucentStatus">true</item>
         <!-- Setting global font -->
         <item name="fontFamily">@font/open_sans</item>
+        <!-- Setting global input style -->
+        <item name="textInputStyle">@style/Style.Widget.Draftt.InputLayout</item>
     </style>
 </resources>
