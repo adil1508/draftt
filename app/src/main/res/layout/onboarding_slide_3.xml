@@ -19,11 +19,10 @@
 
         <Button
             android:id="@+id/lets_draftt_button"
-            style="@style/onbaording_slide3_button_style"
+            style="@style/Style.Widget.Draftt.Button.Onboarding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/onboaring_slide3_button_text"
-            app:cornerRadius="@dimen/onboarding_slide3_button_radius"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

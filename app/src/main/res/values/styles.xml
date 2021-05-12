@@ -16,15 +16,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="onbaording_slide3_button_style" parent="Widget.MaterialComponents.Button">
+    <style name="Style.Widget.Draftt.Button.Onboarding">
         <item name="android:layout_marginBottom">80dp</item>
-        <item name="android:backgroundTint">@color/orange_500</item>
         <item name="android:minWidth">48dp</item>
         <item name="android:minHeight">48dp</item>
-        <item name="android:paddingTop">12dp</item>
-        <item name="android:paddingBottom">12dp</item>
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Button</item>
-        <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
     </style>
 
