@@ -56,7 +56,7 @@
     </style>
 
 
-    <style name="login_forgot_password" parent="Widget.MaterialComponents.TextView">
+    <style name="login_forgot_password">
         <item name="android:textSize">12sp</item>
     </style>
 
