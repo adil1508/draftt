@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/lets_go_button"
             style="@style/lets_go_button"
             android:layout_width="match_parent"

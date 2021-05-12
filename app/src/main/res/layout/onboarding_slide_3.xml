@@ -17,7 +17,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/onboarding_logo_no_text" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/lets_draftt_button"
             style="@style/onbaording_slide3_button_style"
             android:layout_width="wrap_content"

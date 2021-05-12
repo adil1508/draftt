@@ -138,7 +138,7 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/signup_button"
                 style="@style/signup_signup_button"
                 android:layout_width="match_parent"

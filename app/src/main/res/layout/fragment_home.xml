@@ -17,7 +17,7 @@
 
         />
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/signout_button"
         style="@style/login_login_button"
         android:layout_width="match_parent"

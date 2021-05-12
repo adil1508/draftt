@@ -54,7 +54,7 @@
                 android:inputType="numberDecimal" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/verify_button"
             style="@style/verify_button"
             android:layout_width="match_parent"
