@@ -19,7 +19,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:background="#00ffffff" 
+            android:background="#00ffffff"
             app:tabBackground="@drawable/onboarding_tab_selector"
             app:tabGravity="center"
             app:tabIndicatorHeight="0dp" />
