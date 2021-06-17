@@ -25,12 +25,12 @@ class AuthActivity : AppCompatActivity() {
             // user logged in
             // Go on to Home Activity
             Timber.d("User logged in")
-            val intent = Intent(this, HomeActivity::class.java)
-            // These flags clear all activities on the stack
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(intent)
-            finish()
+            Intent(this, HomeActivity::class.java).apply {
+                // These flags clear all activities on the stack
+                flags =
+                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_MULTIPLE_TASK or Intent.FLAG_ACTIVITY_NO_ANIMATION
+                startActivity(this)
+            }
 
         } else {
             // user not logged in
