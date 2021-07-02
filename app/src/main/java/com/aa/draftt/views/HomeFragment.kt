@@ -20,7 +20,7 @@ import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment @Inject constructor(): Fragment() {
+class HomeFragment @Inject constructor() : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
@@ -43,14 +43,15 @@ class HomeFragment @Inject constructor(): Fragment() {
             val userEmailKey = stringPreferencesKey(getString(R.string.SHARED_PREF_USER_EMAIL_KEY))
             val userNameKey = stringPreferencesKey(getString(R.string.SHARED_PREF_USER_NAME_KEY))
             val userIdString = stringPreferencesKey(getString(R.string.SHARED_PREF_USER_ID_KEY))
-            with(requireContext().dataStore.data.first()){
+            with(requireContext().dataStore.data.first()) {
                 loggedUser = this[userEmailKey]
                 userName = this[userNameKey]
                 userID = this[userIdString]
             }
         }
 
-        Toast.makeText(requireContext(), "$loggedUser, $userName, $userID", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "$loggedUser, $userName, $userID", Toast.LENGTH_SHORT)
+            .show()
 
         setupListeners()
 
