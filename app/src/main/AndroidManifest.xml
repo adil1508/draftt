@@ -3,7 +3,7 @@
     package="com.aa.draftt">
 
     <application
-        android:name="com.aa.draftt.App"
+        android:name="com.aa.draftt.DrafttApplication"
         android:allowBackup="true"
         android:icon="@mipmap/draftt_app_icon"
         android:label="@string/app_name"
