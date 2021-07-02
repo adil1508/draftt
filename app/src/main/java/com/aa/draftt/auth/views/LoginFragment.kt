@@ -1,6 +1,5 @@
 package com.aa.draftt.auth.views
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
@@ -57,7 +56,7 @@ class LoginFragment : Fragment() {
                     binding.progressbar.visibility = View.GONE
 
                     // before we are ready to navigate, write user shizzle to sharefPref
-                    writeUserToSharedPref(viewModel.user.value)
+                    writeUserToDataStore(viewModel.user.value)
 
                     startHomeActivity()
                 }
@@ -78,32 +77,21 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun writeUserToSharedPref(user: UserModel?) {
+    private fun writeUserToDataStore(user: UserModel?) {
         user?.let {
-
-            val sharedPref = activity?.getSharedPreferences(
-                getString(R.string.SHARED_PREF_FILE_KEY),
-                Context.MODE_PRIVATE
-            ) ?: return
-
-            with(sharedPref.edit()) {
-                putString(getString(R.string.SHARED_PREF_USER_EMAIL_KEY), it.email)
-                putString(getString(R.string.SHARED_PREF_USER_NAME_KEY), it.name)
-                putString(getString(R.string.SHARED_PREF_USER_ID_KEY), it.id)
-                apply()
-            }
-
             lifecycleScope.launch {
                 requireContext().dataStore.edit { dataStore ->
-                    val userEmailKey = stringPreferencesKey(getString(R.string.SHARED_PREF_USER_EMAIL_KEY))
-                    val userNameKey = stringPreferencesKey(getString(R.string.SHARED_PREF_USER_NAME_KEY))
-                    val userIdString = stringPreferencesKey(getString(R.string.SHARED_PREF_USER_ID_KEY))
+                    val userEmailKey =
+                        stringPreferencesKey(getString(R.string.SHARED_PREF_USER_EMAIL_KEY))
+                    val userNameKey =
+                        stringPreferencesKey(getString(R.string.SHARED_PREF_USER_NAME_KEY))
+                    val userIdString =
+                        stringPreferencesKey(getString(R.string.SHARED_PREF_USER_ID_KEY))
                     dataStore[userEmailKey] = it.email!!
                     dataStore[userNameKey] = it.name!!
                     dataStore[userIdString] = it.id!!
                 }
             }
-
         }
     }
 
