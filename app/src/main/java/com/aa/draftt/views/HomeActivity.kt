@@ -1,8 +1,6 @@
 package com.aa.draftt.views
 
-import android.content.Context
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.aa.draftt.R
 import com.aa.draftt.databinding.ActivityHomeBinding
