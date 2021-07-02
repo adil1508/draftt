@@ -112,4 +112,7 @@ dependencies {
     // Logging library
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
+    // DataStore -- replacement for SharedPreferences
+    implementation("androidx.datastore:datastore-preferences:1.0.0-rc01")
+
 }
