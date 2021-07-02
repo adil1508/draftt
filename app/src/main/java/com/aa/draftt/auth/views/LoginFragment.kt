@@ -12,22 +12,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.aa.draftt.R
 import com.aa.draftt.Utils
 import com.aa.draftt.auth.viewmodels.AuthViewModel
+import com.aa.draftt.dataStore
 import com.aa.draftt.databinding.FragmentLoginBinding
 import com.aa.draftt.models.UserModel
 import com.aa.draftt.views.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
+
     private val viewModel: AuthViewModel by activityViewModels()    // gets the viewmodel shared by parent activity
 
     override fun onCreateView(
@@ -74,16 +80,30 @@ class LoginFragment : Fragment() {
 
     private fun writeUserToSharedPref(user: UserModel?) {
         user?.let {
+
             val sharedPref = activity?.getSharedPreferences(
                 getString(R.string.SHARED_PREF_FILE_KEY),
                 Context.MODE_PRIVATE
             ) ?: return
+
             with(sharedPref.edit()) {
-                putString(getString(R.string.SHARED_PREF_USER_EMAIL_KEY), user.email)
-                putString(getString(R.string.SHARED_PREF_USER_NAME_KEY), user.name)
-                putString(getString(R.string.SHARED_PREF_USER_ID_KEY), user.id)
+                putString(getString(R.string.SHARED_PREF_USER_EMAIL_KEY), it.email)
+                putString(getString(R.string.SHARED_PREF_USER_NAME_KEY), it.name)
+                putString(getString(R.string.SHARED_PREF_USER_ID_KEY), it.id)
                 apply()
             }
+
+            lifecycleScope.launch {
+                requireContext().dataStore.edit { dataStore ->
+                    val userEmailKey = stringPreferencesKey(getString(R.string.SHARED_PREF_USER_EMAIL_KEY))
+                    val userNameKey = stringPreferencesKey(getString(R.string.SHARED_PREF_USER_NAME_KEY))
+                    val userIdString = stringPreferencesKey(getString(R.string.SHARED_PREF_USER_ID_KEY))
+                    dataStore[userEmailKey] = it.email!!
+                    dataStore[userNameKey] = it.name!!
+                    dataStore[userIdString] = it.id!!
+                }
+            }
+
         }
     }
 

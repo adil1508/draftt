@@ -12,22 +12,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.aa.draftt.R
 import com.aa.draftt.Utils
 import com.aa.draftt.auth.viewmodels.AuthViewModel
+import com.aa.draftt.dataStore
 import com.aa.draftt.databinding.FragmentSignupBinding
 import com.aa.draftt.models.UserModel
 import com.aa.draftt.views.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 @AndroidEntryPoint
 class SignupFragment : Fragment() {
 
     private lateinit var binding: FragmentSignupBinding
+
     private val viewModel: AuthViewModel by activityViewModels()    // shared viewmodel with activity
 
     override fun onCreateView(
@@ -84,6 +93,17 @@ class SignupFragment : Fragment() {
                 putString(getString(R.string.SHARED_PREF_USER_NAME_KEY), user.name)
                 putString(getString(R.string.SHARED_PREF_USER_ID_KEY), user.id)
                 apply()
+            }
+
+            lifecycleScope.launch {
+                requireContext().dataStore.edit { dataStore ->
+                    val userEmailKey = stringPreferencesKey(getString(R.string.SHARED_PREF_USER_EMAIL_KEY))
+                    val userNameKey = stringPreferencesKey(getString(R.string.SHARED_PREF_USER_NAME_KEY))
+                    val userIdString = stringPreferencesKey(getString(R.string.SHARED_PREF_USER_ID_KEY))
+                    dataStore[userEmailKey] = it.email!!
+                    dataStore[userNameKey] = it.name!!
+                    dataStore[userIdString] = it.id!!
+                }
             }
         }
 
