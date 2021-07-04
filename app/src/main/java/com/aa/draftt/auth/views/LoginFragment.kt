@@ -19,7 +19,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.aa.draftt.R
 import com.aa.draftt.Utils
-import com.aa.draftt.auth.viewmodels.AuthViewModel
+import com.aa.draftt.viewmodels.auth.AuthViewModel
 import com.aa.draftt.dataStore
 import com.aa.draftt.databinding.FragmentLoginBinding
 import com.aa.draftt.models.UserModel

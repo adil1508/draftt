@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.aa.draftt.R
-import com.aa.draftt.auth.viewmodels.AuthViewModel
+import com.aa.draftt.viewmodels.auth.AuthViewModel
 import com.aa.draftt.views.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
