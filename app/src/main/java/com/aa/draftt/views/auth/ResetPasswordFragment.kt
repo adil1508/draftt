@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.aa.draftt.databinding.FragmentForgotPasswordBinding
 
-class ForgotPasswordFragment : Fragment() {
+class ResetPasswordFragment : Fragment() {
 
     private lateinit var binding: FragmentForgotPasswordBinding
 
@@ -24,7 +24,7 @@ class ForgotPasswordFragment : Fragment() {
 
     private fun setupListeners() {
         binding.resetPasswordButton.setOnClickListener {
-            findNavController().navigate(ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToAccountVerificationFragment())
+            findNavController().navigate(ResetPasswordFragmentDirections.actionForgotPasswordFragmentToAccountVerificationFragment())
         }
     }
 
@@ -32,6 +32,6 @@ class ForgotPasswordFragment : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance() =
-            ForgotPasswordFragment()
+            ResetPasswordFragment()
     }
 }
