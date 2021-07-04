@@ -24,6 +24,7 @@ class ResetPasswordFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        viewModel.navigateToLogin.value = false
         binding = FragmentResetPasswordBinding.inflate(inflater, container, false)
         setupListeners()
 
