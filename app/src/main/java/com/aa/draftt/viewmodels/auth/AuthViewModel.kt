@@ -31,10 +31,7 @@ class AuthViewModel @Inject constructor(
         get() = _navigateToAuthenticated
 
     // Tell the observing fragment to navigate to Login Fragment
-    private val _navigateToLogin = MutableLiveData(false)
-    val navigateToLogin: LiveData<Boolean>
-        get() = _navigateToLogin
-
+    val navigateToLogin = MutableLiveData(false)
 
     // Store user info using our model
     private val _user = MutableLiveData(UserModel())
@@ -144,7 +141,7 @@ class AuthViewModel @Inject constructor(
             }
         }
 
-        _navigateToLogin.postValue(true)
+        navigateToLogin.postValue(true)
 
     }
 
