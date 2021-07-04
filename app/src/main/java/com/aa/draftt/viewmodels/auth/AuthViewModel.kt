@@ -1,4 +1,4 @@
-package com.aa.draftt.auth.viewmodels
+package com.aa.draftt.viewmodels.auth
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
