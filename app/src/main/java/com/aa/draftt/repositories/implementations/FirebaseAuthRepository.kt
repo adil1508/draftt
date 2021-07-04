@@ -31,6 +31,12 @@ class FirebaseAuthRepository @Inject constructor(
         }
     }
 
+    override suspend fun resetPassword(email: String): Task<Void> {
+        return withContext(Dispatchers.IO){
+            firebaseAuth.sendPasswordResetEmail(email)
+        }
+    }
+
     override fun getLoggedInUser(): FirebaseUser? = firebaseAuth.currentUser
 
     // TODO: Add logging when implement this properly

@@ -14,6 +14,8 @@ interface AuthRepository {
 
     fun getLoggedInUser(): FirebaseUser?
 
+    suspend fun resetPassword(email: String): Task<Void>
+
     // TODO: Add logging when implement this properly
     suspend fun signout()
 }
