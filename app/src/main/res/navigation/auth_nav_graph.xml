@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="com.aa.draftt.views.auth.ForgotPasswordFragment"
+        android:name="com.aa.draftt.views.auth.ResetPasswordFragment"
         android:label="ForgotPasswordFragment">
         <action
             android:id="@+id/action_forgotPasswordFragment_to_accountVerificationFragment"
