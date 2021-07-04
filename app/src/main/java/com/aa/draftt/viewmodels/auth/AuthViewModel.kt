@@ -14,6 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.tasks.await
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -131,6 +132,17 @@ class AuthViewModel @Inject constructor(
     }
 
     fun resetPassword(email: String){
+
+        viewModelScope.launch {
+            val resetPasswordTask = authRepository.resetPassword(email)
+            try {
+                resetPasswordTask.await()
+            } catch (e: Exception){
+                Timber.d("Something went wrong sending reset password email: $email")
+                _error.postValue(resetPasswordTask.exception?.localizedMessage)
+                cancel()
+            }
+        }
 
         _navigateToLogin.postValue(true)
 
