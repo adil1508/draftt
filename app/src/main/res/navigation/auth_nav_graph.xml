@@ -28,8 +28,8 @@
         android:name="com.aa.draftt.views.auth.ResetPasswordFragment"
         android:label="ForgotPasswordFragment">
         <action
-            android:id="@+id/action_forgotPasswordFragment_to_accountVerificationFragment"
-            app:destination="@id/accountVerificationFragment"
+            android:id="@+id/action_forgotPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"

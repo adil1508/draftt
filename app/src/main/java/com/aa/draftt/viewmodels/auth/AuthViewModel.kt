@@ -24,10 +24,16 @@ class AuthViewModel @Inject constructor(
 ) :
     ViewModel() {
 
-    // Tell the observing fragment to navigate away
+    // Tell the observing fragment to navigate away after being authenticated
     private val _navigateToAuthenticated = MutableLiveData(false)
     val navigateToAuthenticated: LiveData<Boolean>
         get() = _navigateToAuthenticated
+
+    // Tell the observing fragment to navigate to Login Fragment
+    private val _navigateToLogin = MutableLiveData(false)
+    val navigateToLogin: LiveData<Boolean>
+        get() = _navigateToLogin
+
 
     // Store user info using our model
     private val _user = MutableLiveData(UserModel())
@@ -125,7 +131,9 @@ class AuthViewModel @Inject constructor(
     }
 
     fun resetPassword(email: String){
-        TODO("Going to implement later")
+
+        _navigateToLogin.postValue(true)
+
     }
 
     // updates the current user live data
