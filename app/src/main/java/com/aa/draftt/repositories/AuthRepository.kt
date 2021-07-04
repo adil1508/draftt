@@ -12,7 +12,7 @@ interface AuthRepository {
 
     suspend fun signup(email: String, password: String): Task<AuthResult>
 
-    suspend fun getLoggedInUser(): FirebaseUser?
+    fun getLoggedInUser(): FirebaseUser?
 
     // TODO: Add logging when implement this properly
     suspend fun signout()
