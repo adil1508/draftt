@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.aa.draftt.auth.views.AuthActivity
+import com.aa.draftt.views.auth.AuthActivity
 import com.aa.draftt.databinding.OnboardingSlide1Binding
 import com.aa.draftt.databinding.OnboardingSlide2Binding
 import com.aa.draftt.databinding.OnboardingSlide3Binding
