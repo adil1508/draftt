@@ -3,7 +3,7 @@ package com.aa.draftt
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.aa.draftt.auth.views.AuthActivity
+import com.aa.draftt.views.auth.AuthActivity
 
 class RedHypergiantActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
