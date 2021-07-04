@@ -26,24 +26,29 @@ class ResetPasswordFragment : Fragment() {
     ): View {
         binding = FragmentResetPasswordBinding.inflate(inflater, container, false)
         setupListeners()
+
+        viewModel.navigateToLogin.observe(viewLifecycleOwner, { navigate ->
+            if (navigate) {
+                Timber.d("Navigating to Login Fragment")
+                findNavController().navigate(ResetPasswordFragmentDirections.actionForgotPasswordFragmentToLoginFragment())
+            }
+        })
+
         return binding.root
     }
 
     private fun setupListeners() {
         binding.resetPasswordButton.setOnClickListener {
-
             val emailText = binding.emailInputLayout.editText?.text.toString()
-
             if (validate(emailText)) {
                 viewModel.resetPassword(emailText)
-                Timber.d("Email validated. Ready to reset password")
-//                findNavController().navigate(ResetPasswordFragmentDirections.actionForgotPasswordFragmentToAccountVerificationFragment())
+                // TODO: Set a Toast message here maybe
+                Utils.hideKeyboard(requireContext(), binding.root)
             }
         }
     }
 
     private fun validate(email: String): Boolean {
-
         if (email.isEmpty()) {
             binding.emailInputLayout.error = getString(R.string.login_email_validation_error_empty)
             return false
@@ -56,7 +61,6 @@ class ResetPasswordFragment : Fragment() {
         }
 
         return true
-
     }
 
 
