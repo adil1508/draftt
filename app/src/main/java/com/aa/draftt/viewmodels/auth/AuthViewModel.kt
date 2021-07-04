@@ -124,6 +124,10 @@ class AuthViewModel @Inject constructor(
 
     }
 
+    fun resetPassword(email: String){
+        TODO("Going to implement later")
+    }
+
     // updates the current user live data
     private fun updateCurrentUser() {
         val firebaseUser = authRepository.getLoggedInUser()

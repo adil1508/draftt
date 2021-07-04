@@ -5,12 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.aa.draftt.R
+import com.aa.draftt.Utils
 import com.aa.draftt.databinding.FragmentResetPasswordBinding
+import com.aa.draftt.viewmodels.auth.AuthViewModel
+import timber.log.Timber
 
 class ResetPasswordFragment : Fragment() {
 
     private lateinit var binding: FragmentResetPasswordBinding
+
+    private val viewModel: AuthViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,8 +31,32 @@ class ResetPasswordFragment : Fragment() {
 
     private fun setupListeners() {
         binding.resetPasswordButton.setOnClickListener {
-            findNavController().navigate(ResetPasswordFragmentDirections.actionForgotPasswordFragmentToAccountVerificationFragment())
+
+            val emailText = binding.emailInputLayout.editText?.text.toString()
+
+            if (validate(emailText)) {
+                viewModel.resetPassword(emailText)
+                Timber.d("Email validated. Ready to reset password")
+//                findNavController().navigate(ResetPasswordFragmentDirections.actionForgotPasswordFragmentToAccountVerificationFragment())
+            }
         }
+    }
+
+    private fun validate(email: String): Boolean {
+
+        if (email.isEmpty()) {
+            binding.emailInputLayout.error = getString(R.string.login_email_validation_error_empty)
+            return false
+        }
+
+        if (!Utils.isValidEmail(email)) {
+            binding.emailInputLayout.error =
+                getString(R.string.login_email_validation_error_invalid)
+            return false
+        }
+
+        return true
+
     }
 
 
