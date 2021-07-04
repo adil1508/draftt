@@ -128,22 +128,18 @@ class AuthViewModel @Inject constructor(
 
     }
 
-    fun resetPassword(email: String){
-
-        viewModelScope.launch {
-            val resetPasswordTask = authRepository.resetPassword(email)
-            try {
-                resetPasswordTask.await()
-            } catch (e: Exception){
-                Timber.d("Something went wrong sending reset password email: $email")
-                _error.postValue(resetPasswordTask.exception?.localizedMessage)
-                cancel()
-            }
+    fun resetPassword(email: String) = viewModelScope.launch(Dispatchers.IO) {
+        val resetPasswordTask = authRepository.resetPassword(email)
+        try {
+            Tasks.await(resetPasswordTask)
+            navigateToLogin.postValue(true)
+        } catch (e: Exception) {
+            Timber.d("Something went wrong sending reset password email: $email")
+            _error.postValue(resetPasswordTask.exception?.localizedMessage)
+            cancel()
         }
-
-        navigateToLogin.postValue(true)
-
     }
+
 
     // updates the current user live data
     private fun updateCurrentUser() {

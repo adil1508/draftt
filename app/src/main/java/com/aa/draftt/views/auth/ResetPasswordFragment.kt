@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -30,9 +31,15 @@ class ResetPasswordFragment : Fragment() {
 
         viewModel.navigateToLogin.observe(viewLifecycleOwner, { navigate ->
             if (navigate) {
+                binding.progressbar.visibility = View.GONE
                 Timber.d("Navigating to Login Fragment")
                 findNavController().navigate(ResetPasswordFragmentDirections.actionForgotPasswordFragmentToLoginFragment())
             }
+        })
+
+        viewModel.error.observe(viewLifecycleOwner, { error ->
+            Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
+            binding.progressbar.visibility = View.GONE
         })
 
         return binding.root
@@ -40,6 +47,7 @@ class ResetPasswordFragment : Fragment() {
 
     private fun setupListeners() {
         binding.resetPasswordButton.setOnClickListener {
+            binding.progressbar.visibility = View.VISIBLE
             val emailText = binding.emailInputLayout.editText?.text.toString()
             if (validate(emailText)) {
                 viewModel.resetPassword(emailText)
