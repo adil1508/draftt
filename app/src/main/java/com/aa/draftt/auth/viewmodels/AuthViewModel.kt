@@ -126,12 +126,11 @@ class AuthViewModel @Inject constructor(
 
     // updates the current user live data
     private fun updateCurrentUser() {
-        runBlocking(Dispatchers.IO) {
-            val firebaseUser = authRepository.getLoggedInUser()
-
-            firebaseUser?.let {
-                // This task returns a max of 1 doc
-                val userEmail = it.email!!
+        val firebaseUser = authRepository.getLoggedInUser()
+        firebaseUser?.let {
+            // This task returns a max of 1 doc
+            val userEmail = it.email!!
+            runBlocking(Dispatchers.IO) {
                 val userDocTask = userRepository.getUserByEmail(userEmail)
                 try {
                     val docs = Tasks.await(userDocTask).documents
